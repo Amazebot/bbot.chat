@@ -1,0 +1,19 @@
+{
+  "navbar": {
+    "/" : "bBot",
+    "/docs": "Docs",
+    "/docs/hubot": "Hubot Migration",
+    "/docs/thought": "Thought Process",
+    "/features": "Features",
+    "/modules": "Modules",
+    "https://amazebot.github.io/bbot/": "API"
+  },
+  "pages": {
+    "404": "¯\\_(ツ)_/¯",
+    "index": "bBot : an adaptable engine for conversational UI",
+    "hubot": "Hubot Migration 🤖",
+    "thought": "Thought Process 🧠",
+    "features": "Special Features ✨",
+    "modules": "Modules & Roadmap 📦"
+  }
+}

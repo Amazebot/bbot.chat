@@ -1,0 +1,334 @@
+// @font-face {
+//   font-family: 'YWFTSugar-Regular';
+//   src: url('/webfonts/37170F_0_0.eot');
+//   src: url('/webfonts/37170F_0_0.eot?#iefix') format('embedded-opentype'), url('/webfonts/37170F_0_0.woff2') format('woff2'), url('/webfonts/37170F_0_0.woff') format('woff'), url('/webfonts/37170F_0_0.ttf') format('truetype');
+// }
+// @import url('https://fonts.googleapis.com/css?family=Oswald');
+// @import url('https://fonts.googleapis.com/css?family=Bungee');
+@import url('https://fonts.googleapis.com/css?family=Convergence');
+
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-family: 'Convergence', $font-family-sans-serif;
+// $headings-font-family: 'Oswald', $font-family-sans-serif;
+// $headings-font-family: 'YWFTSugar-Regular';
+// $headings-line-height: 1.4;
+
+$font-size-base: 1.2rem;
+$h1-font-size:                $font-size-base * 2;
+$h2-font-size:                $font-size-base * 1.5;
+$h3-font-size:                $font-size-base * 1.2;
+$h4-font-size:                $font-size-base * 1.1;
+$h5-font-size:                $font-size-base * 1;
+$h6-font-size:                $font-size-base;
+
+$brand-blue: #5C56FF;
+$brand-grey: #4A4A4A;
+$brand-grey-light: #eee;
+$brand-green: #50e3c2;
+$brand-orange: #f3a902;
+$brand-pink: #ea79af;
+
+$theme-colors: (
+  "blue":       $brand-blue,
+  "grey":       $brand-grey,
+  "lightgrey":  $brand-grey-light,
+  "green":      $brand-green,
+  "orange":     $brand-orange,
+  "pink":       $brand-pink
+);
+
+$gray-100: #FBFBFB;
+$primary: $brand-blue;
+
+$input-btn-padding-x: 1.2rem;
+$btn-border-radius: 99px;
+$btn-border-radius-lg: 99px;
+$line-height-base: 1.6;
+
+// Import after variable defaults set
+
+@import "./_scss/bootstrap";
+
+$body-color: $gray-700;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $gray-100;
+}
+nav {
+  a {
+    color: $brand-grey
+  }
+  background: white;
+  .navbar-brand {
+    height: 1em;
+    position: relative;
+    svg {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  .navbar-toggler {
+    border: none;
+  }
+  .navbar-collapse.collapse.in {
+    display: block!important;
+  }
+}
+header {
+  #logo {
+    width: 240px;
+    margin: 0 auto;
+  }
+  h1, h2, h3 {
+    font-weight: bold;
+    color: $brand-grey;
+  }
+  color: $brand-grey;
+  background: $gray-100;
+}
+.hero {
+  background-image: url("./img/hero-bg.png");
+  background-color: $brand-blue;
+}
+footer {
+  margin-top: 40px;
+  height: 160px;
+  a {
+    color: white;
+  }
+  background-image: url("./img/hero-bg.png");
+  background-color: $brand-blue;
+}
+
+h2, h3 {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+h2, h3, h4 {
+  &:first-child {
+    margin-top: 0
+  }
+}
+
+.page {
+  h1, h2, h3, h4 {
+    svg {
+      height: 1em;
+      vertical-align: middle;
+    }
+  }
+}
+
+#intro {
+  background-color: $gray-100;
+}
+.hero {
+  padding-top: 90px;
+  margin-top: -45px;
+  background-image: url("./img/hero-bg.png");
+  -webkit-clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+  background-color: $brand-blue;
+}
+
+.page-content {
+  background: white;
+  border-left: 13px solid $brand-green;
+  padding: 3em;
+  img {
+    fill: currentColor;
+  }
+}
+.page .page-content {
+  margin-left: -13px;
+}
+
+.page h1 {
+  margin-bottom: 1em;
+}
+.page h2 {
+  color: $brand-pink;
+  font-weight: bolder;
+  margin-bottom: 1em;
+}
+.page p + h2 {
+  margin-top: 2em;
+}
+.text-light {
+  h1, h2, h3, h4 {
+    color: white;
+  }
+}
+hr {
+  margin: 2rem 0;
+  border-top: 2px dashed $brand-green;
+}
+
+.big {
+  font-size: 300%
+}
+
+.tag {
+  color: $brand-orange;
+  border-bottom: 3px solid $brand-orange;
+  display: inline-block;
+  padding: 0;
+  font-weight: bold;
+}
+
+.clip {
+  -webkit-clip-path: polygon(0 50px, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 50px, 100% 0, 100% 100%, 0% 100%);
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.triangle {
+  width: 80px;
+  height: 60px;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.btn-primary {
+  color: white
+}
+.btn-secondary {
+  @include button-variant(white, $brand-pink);
+  color: $brand-pink;
+}
+.bg-blue {
+  .btn-secondary {
+    @include button-variant(white, white);
+    color: $brand-blue;
+  }
+}
+
+.bg {
+  background: url("/img/bg.png")
+}
+
+/* Dracula Theme v1.2.5
+ *
+ * https://github.com/dracula/highlightjs
+ *
+ * Copyright 2016-present, All rights reserved
+ *
+ * Code licensed under the MIT license
+ *
+ * @author Denis Ciccale <dciccale@gmail.com>
+ * @author Zeno Rocha <hi@zenorocha.com>
+ */
+
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-section,
+.hljs-link {
+  color: #8be9fd;
+}
+
+.hljs-params {
+  color: #ffb86c;
+}
+
+.hljs-keyword,
+.hljs-regexp {
+  color: #ff79c6;
+}
+
+.hljs,
+.hljs-subst {
+  color: #f8f8f2;
+}
+
+.hljs-title {
+  color: #50fa7b;
+}
+
+.hljs-string,
+.hljs-meta,
+.hljs-name,
+.hljs-type,
+.hljs-attr,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #f1fa8c;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #6272a4;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-literal,
+.hljs-number {
+  color: #bd93f9;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+code {
+  color: $brand-grey;
+  background: $brand-grey-light;
+  padding: 0 .3em;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: .3em;
+}
+
+pre.code-container {
+  overflow: visible;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  margin: 2em -3em;
+  padding: 2em 3em;
+  background: #2D303E;
+  box-shadow: 0 17px 43px rgba(0, 0, 0, 0.3);
+  border-radius: 1em;
+  & > * {
+    display: block;
+    background:#2D303E;
+    border: none;
+  }
+}
+pre code.hljs {
+  box-sizing: border-box;
+}
+.page pre.code-container {
+  margin: 2em -5em;
+}

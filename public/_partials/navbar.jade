@@ -1,0 +1,52 @@
+mixin navLink(href, title)
+  a.nav-link(href=href)= title
+
+mixin navTree(items)
+  - var parentPath = '/'
+  - var inParent = false
+  - var itemCount = 0
+  for title, href in items
+    - var isChild = ( parentPath !== '/' && href.indexOf(parentPath) >= 0 )
+    
+    //- not a child path
+    unless isChild
+      - var id = href.replace(/[^a-zA-Z0-9 -]/, '')
+      - parentPath = href
+      
+      //- close previous nested tree if the previous item was sub
+      if inParent
+        | </div>
+        - inParent = false
+
+      //- close the last item
+      if itemCount == 0
+        | </a></li>
+      
+      //- top-level item left open in case next item is child
+      | <li class="nav-item#{ current.source == href ? ' active' : '' }"><a class="nav-link" id="#{id}" href="#{href}">#{title}
+
+      //- is a child path (/parent/child)...
+    else
+
+      //- start new nested tree for first item in sub-level
+      unless inParent
+        | <b class="caret"></b></a>
+        | <div class="dropdown-menu" aria-labelledby="#{id}">
+        - inParent = true
+
+      //- sub-level item are self-closing
+      | <a href="#{href}" class="dropdown-item#{ current.source == href ? ' active' : '' }">#{title}</a>
+      
+    - itemCount++
+  
+  //- close final item
+  | </a></li>
+
+nav.navbar.navbar-expand-lg.sticky-top.navbar-light(role="navigation")
+  a.navbar-brand(href="/")
+    include /img/bbot-mark.svg
+  button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+    span.navbar-toggler-icon
+  div#navbarNav.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      +navTree(public._data.navbar)

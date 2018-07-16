@@ -1,0 +1,17 @@
+jQuery(document).ready(function($) {
+  $('.language-javascript, .language-js').each((i, block) => {
+    $(block).parent('pre').addClass('code-container')
+    $(block).addClass('javascript')
+    hljs.highlightBlock(block)
+  })
+  $('.navbar .nav-item')
+    .has('.dropdown-menu')
+    .addClass('dropdown')
+  $('.navbar .nav-item.dropdown > .nav-link')
+    .addClass('dropdown-toggle')
+    .attr('href', '#')
+    .attr('role', 'button')
+    .attr('aria-haspopup', 'true')
+    .attr('aria-expanded', 'false')
+    .attr('data-toggle', 'dropdown')
+})

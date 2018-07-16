@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    != partial("_partials/meta")
+  body(class="#{ 'route-' + current.path.join(' route-') }")
+      != partial("_partials/navbar")
+      != partial("_partials/header")
+      main(role="main")
+        article
+          if current.path == 'index'
+            != yield
+          else
+            .page.container
+              .col-lg-10.col-xl-9.mx-auto
+                .page-content
+                  != yield
+      footer(role="aside")
+        != partial("_partials/footer")
+      script(src="//code.jquery.com/jquery-3.3.1.slim.min.js", integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=", crossorigin="anonymous")
+      script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
+      script(src="/main.js")
+      script(src="//stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js", integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em", crossorigin="anonymous")

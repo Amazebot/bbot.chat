@@ -1,0 +1,77 @@
+section#intro
+  .hero.position-relative.overflow-hidden.clearfix.text-light
+    .container
+      .row.pt-4.pb-5
+        .col-md-6
+            h3 Converse Anywhere
+            p bBot can model and execute conversation integrated with your preferred messaging, NLU, and data storage providers.
+            p Meet your audience wherever they live with conversational experiences that deliver services, tell stories, drive interaction.
+        .col-md-6
+            h3 Be Independent
+            p As open source, self-hosted software under MIT licence, there's no registration, usage limits or platform dependencies.
+            p Our focus is security and privacy. Your bots can run completely on-premise with enterprise level audit trails.
+section#quickstart
+  .container.py-5
+    h2 #[Fa(name="building")] Building with bBot
+    .row
+      .col-sm-4
+        h3 Alpha Release
+        p bBot alpha is in active development.
+        p We'll be streamlining our docs and developer tools for writing, deploying and interacting with bBot instances as a matter of priority.
+        p For now, the quickest way to get started is to start a new local project, import bBot and start chatting in the command line.
+      .col-sm-8.pl-sm-5
+        h3 Quick Start
+        .page-content
+          p 1. bBot is a #[a(href="npmjs.com/package/bbot") Node.js package], so it requires #[a(href="https://www.npmjs.com/get-npm") Node and NPM]
+          p 2. Start a new project with #[code npm init]
+          p 3. Install bBot as a dependency with #[code npm install --save bbot]
+          p 4. Create an #[strong index.js] file as per example below
+          p 5. Run the bot with #[code node index.js]
+      .col-12
+        h3 Hello World
+        p Create an #[b index.js] for a simple #[i hello] <whoever> chatbot...
+        pre
+          code.language-js
+            | const bot = require('bbot')
+            | 
+            | bot.listenText(/say hello (.*)/i, (b) => {
+            |   b.respond(`Hello ${b.match[1]}!`)
+            | })
+            | 
+            | bot.start()
+        p Then chat with your bot from the command line...
+        pre.code-container
+          code.shell
+            img(src="/img/hello-content.png")
+
+//- Content / Links
+//- - Email Signup
+//- - Adapters (available, planned)
+//- - Video demo embed
+//- - Project Sponsors
+//- - bBot for Rocket.Chat
+//- - Link to repo (and back)
+//- - FAQ
+
+//- - Docs
+//-     - Configuration
+//-     - Adapters (how they work)
+//-     - Scripting Interactions
+//-     - Logging
+//-     - Middleware
+//-     - Basic Conversations
+//-     - bBot for Rocket.Chat
+
+//- Footer
+//- - Sponsored by Rocket.Chat
+//- - Support us <3 on … ??
+//- - Crafted by Amazebot
+
+//- - Prototype on Glitch with Rocket.Chat
+//-   - Remix project
+//-   - Create user on playground.rocket.chat
+//-   - Create bot account
+//-   - Configure Glitch env
+//-   - Talk to your bot
+
+

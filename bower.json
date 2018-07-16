@@ -1,0 +1,23 @@
+{
+  "name": "bbot.chat",
+  "homepage": "http://bbot.chat",
+  "authors": [
+    "Tim Kinnane <tim.kinnane@amazebot.chat>"
+  ],
+  "description": "bbot.chat front end dependencies",
+  "main": "www/index.html",
+  "keywords": [],
+  "license": "Copyright 2018 Amazebot",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "directory": "public/components",
+  "dependencies": {
+    "bootstrap": "4.1.2"
+  }
+}
