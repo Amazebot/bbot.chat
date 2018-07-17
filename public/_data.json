@@ -1,16 +1,19 @@
 {
   "navbar": {
-    "/" : "bBot",
+    "https://github.com/Amazebot/bbot" : "Source",
     "/docs": "Docs",
+    "/docs/core": "Running bBot (core)",
     "/docs/hubot": "Hubot Migration",
     "/docs/thought": "Thought Process",
+    "/faq": "FAQ",
     "/features": "Features",
     "/modules": "Modules",
     "https://amazebot.github.io/bbot/": "API"
   },
   "pages": {
     "404": "¯\\_(ツ)_/¯",
-    "index": "bBot : an adaptable engine for conversational UI",
+    "index": "bBot ➮ an adaptable engine for conversational UI",
+    "core": "The Main Module ⏯️",
     "hubot": "Hubot Migration 🤖",
     "thought": "Thought Process 🧠",
     "features": "Special Features ✨",

@@ -62,52 +62,52 @@ ul
   li Test Coverage with #[a(href=istanbul) Istanbul]
 
 .row
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/play.svg]  Core
     p
       | Loads adapters and middleware, controls the running status to pause, 
       | play, shutdown, reboot. <br>#[strong ~(O_O)~] bleep bloop.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/config.svg]  Config
     p
       | Apply settings from command line arguments, environment variables or config 
       | files. Accessible to all modules and extensions.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/state.svg]  State
     p
       | Provided to callbacks, contains all attributes of the bot and current 
       | interaction (message matching and language processing). Used to invoke response.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/message.svg]  Message
     p
       | Received from the platform, with user and room meta. Response envelopes can 
       | address user, room or a platform event, like reactions and topic changes.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/code.svg]  Message Adapters
     p
       | Use any messaging platform to hear and respond to message. In alpha, we include 
       | adapters for #[a(href=rc) Rocket.Chat] and a command line adapter for testing.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/db.svg]  Storage Adapters
     p
       | Use any storage provider to save the bot's memory and persist transactional data 
       | like messages. We include #[a(href=mongo) Mongo] and #[a(href=redis) Redis] by default.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/listen.svg]  Listen
     p
       | Match incoming messages to callbacks by text pattern, natural language 
       | processing, or custom functions and fallbacks.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/bit.svg]  Bit
     p
       | Bits provide a simple schema for defining a single point within a series of 
       | interactions. Bits link together to make conversations.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/brain.svg]  Brain
     p
       | Controls all the operational memory and handles anything stored longer 
       | term. It keeps known users and messaging history or custom data sets.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/id.svg]  ID
     p
       | Assigns every listener, message, user and state instance within either a hash 
@@ -116,17 +116,17 @@ ul
 hr
 p In development...
 .row
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/outline.svg]  Scripts
     p
       | Allows bot to process external file/s on load. For developers to add behaviour 
       | and conversation content using bBot (its primary purpose).
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/webhook.svg]  Webhooks
     p
       | An internal express server sets up HTTP listeners, to change the bot's state 
       | or trigger interactions in the message platform.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/server.svg]  HTTP Requests
     p
       | Post or get content between the bot and external services to provide real-time 
@@ -134,41 +134,41 @@ p In development...
 
 h2 #[a(name='beta')] Beta Modules
 .row
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/nlp.svg]  Natural Language Adapters
     p
       | We will include #[a(href=watson) Watson] as a default option for adding NLU to match 
       | and respond based on message intent, entities and/or sentiment.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/path.svg]  Path
     p
       | An essential component for conversations. Matches message against possible 
       | branches in a tightly scoped context. Adapts to user input in real-time.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/dialogue.svg]  Dialogue
     p
       | Controls conversation paths, with fallbacks and timeouts. Routes responses as required.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/scene.svg]  Scene
     p
       | Enters and conducts audience participation in dialogue. Audience can be a user 
       | or a whole room. Once engaged, the bot processes input within that context.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/improv.svg]  Improv
     p
       | Parses message templates at runtime with data from user attributes, 
       | collected context and/or custom extensions.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/director.svg]  Director
     p
       | Provides conversation firewalls, allowing certain users to be authorised or 
       | blocked from entering particular interactions.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/map.svg]  Outline
     p
       | A simple conversation modelling schema. It's attributes automatically configure 
       | modules to populate and conduct a series of interactions.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/transcript.svg]  Transcript
     p
       | Record conversation event details. Transcripts are searchable and can be used to 
@@ -176,21 +176,21 @@ h2 #[a(name='beta')] Beta Modules
   
 h2 #[a(name='release')] Release Modules
 .row
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/code.svg]  Message Adapters
     p
       | Messaging platform support extends to #[a(href=slack) Slack] and #[a(href=messenger) Messenger].
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/payload.svg]  Rich Messages
     p
       | Send messages with rich UI payloads. Attach button menus and multimedia content, 
       | to be presented in the message platform.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/laptop.svg]  Feature Tutorials
     p
       | The bot comes loaded with a variety of example interactions that can be engaged 
       | with and modified to learn the basics.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/pretend.svg]  Pretend
     p
       | A set of mock adapters, that emulate processing developer's scripts in a live 
@@ -198,32 +198,32 @@ h2 #[a(name='release')] Release Modules
 
 h2 #[a(name='post')] Post Release Modules
 .row
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/i18n.svg]  Internationalisation
     p
       | Providing multi-lingual scripts allows the i18n module to change the bot's 
       | language in real-time, based on user attributes or NLU detection.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/dashboard.svg]  Web Dashboard
     p
       | View the operational status and active behaviour of the bot. Can report on known 
       | users and interaction transcripts.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/analytics.svg] Analytics Adapters
     p
       | Provide a drill down feed of analytics data to external platforms. We'll package 
       | #[a(href=chatbase) Chatbase] as a default provider.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/webhook.svg]  Webhook Adapters
     p
       | Integrate events and share data with external platforms without effort. We'll 
       | provide #[a(href=zapier) Zapier] and #[a(href=stackstorm) StackStorm] to start.
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/chat.svg]  Message Adapters
     p
       | Messaging platform support extends to #[a(href=telegram) Telegram], #[a(href=discord) Discord], 
       | #[a(href=hangouts) Hangouts] as well as voice platforms (TBA).
-  .col-sm-6.col-lg-4
+  .col-sm-6
     h4 #[include /img/nlp.svg]  Natural Language Adapters
     p
       | We'll add more adapters for #[a(href=rasa) Rasa], #[a(href=wit) Wit.ai] 

@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
   $('.language-javascript, .language-js').each((i, block) => {
     $(block).parent('pre').addClass('code-container')
     $(block).addClass('javascript')
@@ -14,4 +14,14 @@ jQuery(document).ready(function($) {
     .attr('aria-haspopup', 'true')
     .attr('aria-expanded', 'false')
     .attr('data-toggle', 'dropdown')
+  $('.page h2, .page h3, .page h4').each(function (i) {
+    var heading = $(this)
+    var name = heading.text().toLowerCase().replace(/[^a-zA-Z0-9 -]|\s/g, '').trim()
+    var link = document.location.protocol + '//' + document.location.hostname + ((document.location.port) ? ':' + (document.location.port) : '') + document.location.pathname + '#' + name
+    var anchor = $('<a class="anchor"></a>')
+    anchor.attr('href', link)
+    heading.attr('id', name).addClass('h-anchor')
+    heading.append(anchor)
+  })
+  if (document.location.hash) $(document).scrollTop($(document.location.hash).offset().top)
 })

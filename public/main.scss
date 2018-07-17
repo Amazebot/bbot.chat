@@ -1,17 +1,8 @@
-// @font-face {
-//   font-family: 'YWFTSugar-Regular';
-//   src: url('/webfonts/37170F_0_0.eot');
-//   src: url('/webfonts/37170F_0_0.eot?#iefix') format('embedded-opentype'), url('/webfonts/37170F_0_0.woff2') format('woff2'), url('/webfonts/37170F_0_0.woff') format('woff'), url('/webfonts/37170F_0_0.ttf') format('truetype');
-// }
-// @import url('https://fonts.googleapis.com/css?family=Oswald');
-// @import url('https://fonts.googleapis.com/css?family=Bungee');
 @import url('https://fonts.googleapis.com/css?family=Convergence');
 
 $font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $headings-font-family: 'Convergence', $font-family-sans-serif;
-// $headings-font-family: 'Oswald', $font-family-sans-serif;
-// $headings-font-family: 'YWFTSugar-Regular';
-// $headings-line-height: 1.4;
+$headings-line-height: 1.4;
 
 $font-size-base: 1.2rem;
 $h1-font-size:                $font-size-base * 2;
@@ -25,8 +16,11 @@ $brand-blue: #5C56FF;
 $brand-grey: #4A4A4A;
 $brand-grey-light: #eee;
 $brand-green: #50e3c2;
+$brand-turquoise: #7EFFE2;
 $brand-orange: #f3a902;
 $brand-pink: #ea79af;
+$brand-rose: #E2E1FF;
+$brand-lavender: #9693EF;
 
 $theme-colors: (
   "blue":       $brand-blue,
@@ -51,15 +45,20 @@ $line-height-base: 1.6;
 
 $body-color: $gray-700;
 
+div[class*='col-'] + div[class*='col-'] {
+  margin-top: 1em;
+  @include media-breakpoint-up(md) {
+    margin-top: 0;
+  }
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $gray-100;
+  background: white;
 }
 nav {
-  a {
-    color: $brand-grey
-  }
+  a { color: $brand-grey }
   background: white;
   .navbar-brand {
     height: 1em;
@@ -71,17 +70,17 @@ nav {
       left: 0;
     }
   }
-  .navbar-toggler {
-    border: none;
-  }
-  .navbar-collapse.collapse.in {
-    display: block!important;
-  }
+  .navbar-toggler { border: none; }
+  .navbar-collapse.collapse.in { display: block!important; }
 }
 header {
   #logo {
     width: 240px;
     margin: 0 auto;
+    svg {
+      width: 100%;
+      height: auto;
+    }
   }
   h1, h2, h3 {
     font-weight: bold;
@@ -94,16 +93,21 @@ header {
   background-image: url("./img/hero-bg.png");
   background-color: $brand-blue;
 }
+main {
+  background: $gray-100;
+  padding-bottom: 2em;
+}
 footer {
-  margin-top: 40px;
-  height: 160px;
-  a {
+  a, a:hover {
     color: white;
   }
   background-image: url("./img/hero-bg.png");
   background-color: $brand-blue;
 }
 
+h2 {
+  font-weight: bolder;
+}
 h2, h3 {
   margin-top: 2rem;
   margin-bottom: 1.5rem;
@@ -118,18 +122,28 @@ h2, h3, h4 {
   }
 }
 
-.page {
-  h1, h2, h3, h4 {
-    svg {
-      height: 1em;
-      vertical-align: middle;
-    }
+h1, h2, h3, h4, footer {
+  svg, img {
+    fill: currentColor;
+    height: 1em;
+    vertical-align: middle;
   }
+}
+
+.highlight {
+  background-color: $brand-rose;
 }
 
 #intro {
   background-color: $gray-100;
 }
+#signup {
+  background: url("/img/bg.png")
+}
+#adapters {
+  background: white;
+}
+
 .hero {
   padding-top: 90px;
   margin-top: -45px;
@@ -214,6 +228,7 @@ hr {
   color: $brand-pink;
 }
 .bg-blue {
+  color: white;
   .btn-secondary {
     @include button-variant(white, white);
     color: $brand-blue;

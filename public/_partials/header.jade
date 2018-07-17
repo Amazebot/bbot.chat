@@ -3,5 +3,6 @@ header
     .position-relative.overflow-hidden.py-5.text-center
       .col-md-8.mx-auto
         h1#logo.mb-4
-          include /img/bbot-logo.svg
+          a(href="/")
+            include /img/bbot-logo.svg
         h2= public._data.pages[current.source]

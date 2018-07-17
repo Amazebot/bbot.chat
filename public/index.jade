@@ -3,32 +3,34 @@ section#intro
     .container
       .row.pt-4.pb-5
         .col-md-6
-            h3 Converse Anywhere
+            .big 👋
+            h3.mt-1 Converse Anywhere
             p bBot can model and execute conversation integrated with your preferred messaging, NLU, and data storage providers.
             p Meet your audience wherever they live with conversational experiences that deliver services, tell stories, drive interaction.
         .col-md-6
-            h3 Be Independent
+            .big 💪
+            h3.mt-1 Be Independent
             p As open source, self-hosted software under MIT licence, there's no registration, usage limits or platform dependencies.
             p Our focus is security and privacy. Your bots can run completely on-premise with enterprise level audit trails.
 section#quickstart
   .container.py-5
-    h2 #[Fa(name="building")] Building with bBot
+    h2 #[a(name="building")] Building with bBot
     .row
-      .col-sm-4
-        h3 Alpha Release
+      .col-md-4
+        h3 #[include /img/code.svg] Alpha Release
         p bBot alpha is in active development.
         p We'll be streamlining our docs and developer tools for writing, deploying and interacting with bBot instances as a matter of priority.
         p For now, the quickest way to get started is to start a new local project, import bBot and start chatting in the command line.
-      .col-sm-8.pl-sm-5
-        h3 Quick Start
-        .page-content
+      .col-md-8
+        h3 #[include /img/play.svg] Quick Start
+        .page-content.mb-4
           p 1. bBot is a #[a(href="npmjs.com/package/bbot") Node.js package], so it requires #[a(href="https://www.npmjs.com/get-npm") Node and NPM]
           p 2. Start a new project with #[code npm init]
           p 3. Install bBot as a dependency with #[code npm install --save bbot]
           p 4. Create an #[strong index.js] file as per example below
           p 5. Run the bot with #[code node index.js]
       .col-12
-        h3 Hello World
+        h3 #[include /img/message.svg] Hello World
         p Create an #[b index.js] for a simple #[i hello] <whoever> chatbot...
         pre
           code.language-js
@@ -42,25 +44,101 @@ section#quickstart
         p Then chat with your bot from the command line...
         pre.code-container
           code.shell
-            img(src="/img/hello-content.png")
-
-//- Content / Links
-//- - Email Signup
-//- - Adapters (available, planned)
-//- - Video demo embed
-//- - Project Sponsors
-//- - bBot for Rocket.Chat
-//- - Link to repo (and back)
-//- - FAQ
+            img(src="/img/hello-content.png" width="100%")
+section#signup
+  .container.py-5
+    .row
+      .col-md-6.mx-auto
+        .big 🤗
+        p
+          span.highlight We're sharing new features and learning from our maker community. Get access to support and help all our bots achieve their potential.
+        h3 Request an invite 
+        != partial("_partials/signup")
+section#demo
+  .container.py-5
+    .row
+      .col-md-8
+        | video embed
+      .col-md-4
+        h2 #[a(name="demo")] Chatbot Demo
+        p Amazebot's founder Tim Kinnane builds a quirky sentiment analysis chatbot in under 10 minutes.
+        p We hope this encourages participation in the project, but the example should not be taken as its final form, nor its full capacity.
+section#adapters
+  .container.py-5
+    h2 Adapters
+    .row
+      .col-md-4
+        h3 #[include /img/code.svg] Supported
+        img.m-2(width="100px" height="auto" src="/img/adapters/rocketchat.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/mongo.png")
+      .col-md-8
+        h3 #[include /img/map.svg] Roadmap
+        img.m-2(width="100px" height="auto" src="/img/adapters/watson.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/slack.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/messenger.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/hangouts.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/discord.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/signal.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/zapier.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/stack-storm.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/redis.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/google-cloud.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/mozilla.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/bing-speech.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/rasa.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/chatbase.png")
+        //- img.m-2(width="100px" height="auto" src="/img/adapters/dialogflow.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/recast.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/comprehend.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/telegram.png")
+        img.m-2(width="100px" height="auto" src="/img/adapters/twitter.png")
+        //- img.m-2(width="100px" height="auto" src="/img/adapters/wit.ai.png")
+section#sponsors
+  .container.py-5
+    h2 Our Sponsors
+    .row
+      .col-md-6
+        h3
+          | #[include /img/rocket.svg] 
+          | bBot for #[a(href="rocket.chat") Rocket.Chat]
+        p
+          | Rocket.Chat is our official sponsor. 
+          | We've worked with their community since the beginning and benefited 
+          | from their open and collaborative approach. Though bBot is committed to 
+          | remaining platform independent, developers working with Rocket.Chat will
+          | probably encounter the most frictionless experience.
+      .col-md-6
+        h3
+          | #[include /img/heart.svg] 
+          | Become a sponsor
+        p
+          | We're an open source project committed to providing the best quality product
+          | for our community. We've got a vision to fund growth through support and
+          | bespoke solutions for enterprise users. First we need to resource our core
+          | offering by partnering with select sponsors. Be part of the future of conversation.
+        p.text-right
+          a(href="mailto:hello@amazebot.chat").btn.btn-secondary get in touch
 
 //- - Docs
-//-     - Configuration
-//-     - Adapters (how they work)
-//-     - Scripting Interactions
-//-     - Logging
-//-     - Middleware
-//-     - Basic Conversations
-//-     - bBot for Rocket.Chat
+//-   - The Bot (core)
+//-   - Thought & State
+//-   - Adapters
+//-   - Middleware
+//-   - Configuration
+//-   - Messages & Envelopes
+//-   - Logging
+//-   - Brain & Storage
+//-   - Listeners & Bits
+//-   - Scripting Interactions
+//-   - Basic Conversations
+//-   - bBot for Rocket.Chat
+
+//- - Package
+//-   - Repo (GitHub)
+//-   - Readme (NPM)
+//-   - Tests
+//-   - Build & Coverage
+//-   - Dependencies
 
 //- Footer
 //- - Sponsored by Rocket.Chat
