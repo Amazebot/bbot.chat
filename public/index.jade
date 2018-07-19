@@ -1,7 +1,7 @@
 section#intro
   .hero.position-relative.overflow-hidden.clearfix.text-light
     .container
-      .row.pt-4.pb-5
+      .row.pb-5
         .col-md-6
             .big 👋
             h3.mt-1 Converse Anywhere
@@ -41,10 +41,12 @@ section#quickstart
             | })
             | 
             | bot.start()
-        p Then chat with your bot from the command line...
+        p Test interactions by chatting in your terminal...
         pre.code-container
           code.shell
             img(src="/img/hello-content.png" width="100%")
+    hr
+    a.btn.btn-secondary(href="/docs/core") See more docs
 section#signup
   .container.py-5
     .row
@@ -54,45 +56,46 @@ section#signup
           span.highlight We're sharing new features and learning from our maker community. Get access to support and help all our bots achieve their potential.
         h3 Request an invite 
         != partial("_partials/signup")
-section#demo
-  .container.py-5
-    .row
-      .col-md-8
-        | video embed
-      .col-md-4
-        h2 #[a(name="demo")] Chatbot Demo
-        p Amazebot's founder Tim Kinnane builds a quirky sentiment analysis chatbot in under 10 minutes.
-        p We hope this encourages participation in the project, but the example should not be taken as its final form, nor its full capacity.
+//- section#demo
+//-   .container.py-5
+//-     .row
+//-       .col-md-8
+//-         | video embed
+//-       .col-md-4
+//-         h2 #[a(name="demo")] Chatbot Demo
+//-         p Amazebot's founder Tim Kinnane builds a quirky sentiment analysis chatbot in under 10 minutes.
+//-         p We hope this encourages participation in the project, but the example should not be taken as its final form, nor its full capacity.
 section#adapters
   .container.py-5
     h2 Adapters
     .row
       .col-md-4
-        h3 #[include /img/code.svg] Supported
+        h3 #[include /img/code.svg] Supported in Alpha
         img.m-2(width="100px" height="auto" src="/img/adapters/rocketchat.png")
         img.m-2(width="100px" height="auto" src="/img/adapters/mongo.png")
       .col-md-8
-        h3 #[include /img/map.svg] Roadmap
-        img.m-2(width="100px" height="auto" src="/img/adapters/watson.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/slack.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/messenger.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/hangouts.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/discord.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/signal.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/zapier.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/stack-storm.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/redis.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/google-cloud.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/mozilla.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/bing-speech.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/rasa.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/chatbase.png")
-        //- img.m-2(width="100px" height="auto" src="/img/adapters/dialogflow.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/recast.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/comprehend.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/telegram.png")
-        img.m-2(width="100px" height="auto" src="/img/adapters/twitter.png")
-        //- img.m-2(width="100px" height="auto" src="/img/adapters/wit.ai.png")
+        h3 #[include /img/map.svg] Planned for Release
+        img.m-2(width="100px" height="auto" alt="Slack" src="/img/adapters/slack.png")
+        img.m-2(width="100px" height="auto" alt="Google Hangouts" src="/img/adapters/hangouts.png")
+        img.m-2(width="100px" height="auto" alt="Discord" src="/img/adapters/discord.png")
+        img.m-2(width="100px" height="auto" alt="Messenger" src="/img/adapters/messenger.png")
+        img.m-2(width="100px" height="auto" alt="Telegram" src="/img/adapters/telegram.png")
+        img.m-2(width="100px" height="auto" alt="Kik" src="/img/adapters/kik.png")
+        img.m-2(width="100px" height="auto" alt="IBM Watson" src="/img/adapters/watson.png")
+        img.m-2(width="100px" height="auto" alt="Rasa.ai" src="/img/adapters/rasa.png")
+        img.m-2(width="100px" height="auto" alt="Google Cloud" src="/img/adapters/google-cloud.png")
+        img.m-2(width="100px" height="auto" alt="Redis" src="/img/adapters/redis.png")
+        img.m-2(width="100px" height="auto" alt="Zapier" src="/img/adapters/zapier.png")
+        img.m-2(width="100px" height="auto" alt="StackStorm" src="/img/adapters/stack-storm.png")
+        //- img.m-2(width="100px" height="auto" alt="Signal" src="/img/adapters/signal.png")
+        //- img.m-2(width="100px" height="auto" alt="Mozilla Speech API" src="/img/adapters/mozilla.png")
+        //- img.m-2(width="100px" height="auto" alt="Bing Speech API" src="/img/adapters/bing-speech.png")
+        //- img.m-2(width="100px" height="auto" alt="Chatbase" src="/img/adapters/chatbase.png")
+        //- img.m-2(width="100px" height="auto" alt="Dialogflow" src="/img/adapters/dialogflow.png")
+        //- img.m-2(width="100px" height="auto" alt="Recast" src="/img/adapters/recast.png")
+        //- img.m-2(width="100px" height="auto" alt="Comprehend" src="/img/adapters/comprehend.png")
+        //- img.m-2(width="100px" height="auto" alt="Twitter" src="/img/adapters/twitter.png")
+        //- img.m-2(width="100px" height="auto" alt="Wit.ai" src="/img/adapters/wit.ai.png")
 section#sponsors
   .container.py-5
     h2 Our Sponsors
@@ -117,21 +120,7 @@ section#sponsors
           | bespoke solutions for enterprise users. First we need to resource our core
           | offering by partnering with select sponsors. Be part of the future of conversation.
         p.text-right
-          a(href="mailto:hello@amazebot.chat").btn.btn-secondary get in touch
-
-//- - Docs
-//-   - The Bot (core)
-//-   - Thought & State
-//-   - Adapters
-//-   - Middleware
-//-   - Configuration
-//-   - Messages & Envelopes
-//-   - Logging
-//-   - Brain & Storage
-//-   - Listeners & Bits
-//-   - Scripting Interactions
-//-   - Basic Conversations
-//-   - bBot for Rocket.Chat
+          a(href="mailto:hello@amazebot.chat").btn.btn-secondary Get in touch
 
 //- - Package
 //-   - Repo (GitHub)
@@ -140,16 +129,9 @@ section#sponsors
 //-   - Build & Coverage
 //-   - Dependencies
 
-//- Footer
-//- - Sponsored by Rocket.Chat
-//- - Support us <3 on … ??
-//- - Crafted by Amazebot
-
 //- - Prototype on Glitch with Rocket.Chat
 //-   - Remix project
 //-   - Create user on playground.rocket.chat
 //-   - Create bot account
 //-   - Configure Glitch env
 //-   - Talk to your bot
-
-

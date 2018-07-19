@@ -1,6 +1,7 @@
 doctype html
 html(lang="en")
   head
+    include _partials/analytics.html
     != partial("_partials/meta")
   body(class="#{ 'route-' + current.path.join(' route-') }")
       != partial("_partials/navbar")

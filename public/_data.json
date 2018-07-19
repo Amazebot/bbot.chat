@@ -1,10 +1,22 @@
 {
   "navbar": {
+    "/": "Home",
     "https://github.com/Amazebot/bbot" : "Source",
     "/docs": "Docs",
-    "/docs/core": "Running bBot (core)",
+    "/docs/core": "Running bBot",
     "/docs/hubot": "Hubot Migration",
-    "/docs/thought": "Thought Process",
+    "/docs/thought": "States & Thought",
+    "/docs/wip#adapters": "Adapters",
+    "/docs/wip#middleware": "Middleware",
+    "/docs/wip#config": "Configuration",
+    "/docs/wip#messages": "Messages & Envelopes",
+    "/docs/wip#logging": "Logging",
+    "/docs/wip#storage": "Brain & Storage",
+    "/docs/wip#listeners": "Listeners & Bits",
+    "/docs/wip#scripting": "Scripting Interactions",
+    "/docs/wip#requests": "Requesting Data",
+    "/docs/wip#server": "Server & Webhooks",
+    "/docs/wip#conversation": "Conversation Branching",
     "/faq": "FAQ",
     "/features": "Features",
     "/modules": "Modules",
@@ -16,6 +28,7 @@
     "core": "The Main Module ⏯️",
     "hubot": "Hubot Migration 🤖",
     "thought": "Thought Process 🧠",
+    "wip": "Work In Progress 🚧",
     "features": "Special Features ✨",
     "modules": "Modules & Roadmap 📦"
   }
