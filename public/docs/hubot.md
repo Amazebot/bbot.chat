@@ -1,5 +1,5 @@
 [thought]: ./thought
-[bbot]: 'https://bBot.chat'
+[bbot]: '//bBot.chat'
 [issues]: 'https://github.com/amazebot/bbot.chat/issues'
 
 ## The Real MVP
