@@ -3,6 +3,6 @@
     "title": "bBot",
     "author": "Tim Kinnane <tim.kinnane@amazebot.chat>",
     "description": "An adaptable chatbot framework with a conversational core.",
-    "uri": "bbot.chat"
+    "uri": "//bbot.chat"
   }
 }
