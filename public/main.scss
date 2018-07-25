@@ -52,6 +52,41 @@ div[class*='col-'] + div[class*='col-'] {
   }
 }
 
+.h-anchor {
+  position: relative;
+  a.anchor {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    color: white;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    position: absolute;
+    top: 0;
+    left: -90px;
+    background-color: rgba(0,0,0,0);
+    &:hover {
+      background-color: $brand-orange;
+      background-image: url("/img/link.svg");
+      background-size: 23px;
+      background-repeat: no-repeat;
+      background-position: 14px 8px;
+      &:before {
+        content: "";
+        position: absolute;
+        right: -20px;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-left: 20px solid $brand-orange;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+      }
+    }
+  }
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -90,7 +125,7 @@ header {
   background: $gray-100;
 }
 .hero {
-  background-image: url("./img/hero-bg.png");
+  background-image: url("/img/hero-bg.png");
   background-color: $brand-blue;
 }
 main {
@@ -101,7 +136,7 @@ footer {
   a, a:hover {
     color: white;
   }
-  background-image: url("./img/hero-bg.png");
+  background-image: url("/img/hero-bg.png");
   background-color: $brand-blue;
 }
 
@@ -147,7 +182,7 @@ h1, h2, h3, h4, footer {
 .hero {
   padding-top: 90px;
   margin-top: -45px;
-  background-image: url("./img/hero-bg.png");
+  background-image: url("/img/hero-bg.png");
   -webkit-clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
           clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
 }

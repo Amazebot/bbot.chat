@@ -11,15 +11,15 @@ section#intro
             .big 💪
             h3.mt-1 Be Independent
             p As open source, self-hosted software under MIT licence, there's no registration, usage limits or platform dependencies.
-            p Our focus is security and privacy. Your bots can run completely on-premise with enterprise level audit trails.
+            p Our focus is security and privacy. You keep full control of the conversation and user data with enterprise level audit trails.
 section#quickstart
   .container.py-5
-    h2 #[a(name="building")] Building with bBot
+    h2.h-anchor#buildingwithbbot Building with bBot
     .row
       .col-md-4
         h3 #[include /img/code.svg] Alpha Release
         p bBot alpha is in active development.
-        p We'll be streamlining our docs and developer tools for writing, deploying and interacting with bBot instances as a matter of priority.
+        p We're streamlining our docs and developer tools for writing, deploying and interacting with bBot instances as a matter of priority.
         p For now, the quickest way to get started is to start a new local project, import bBot and start chatting in the command line.
       .col-md-8
         h3 #[include /img/play.svg] Quick Start
@@ -36,8 +36,8 @@ section#quickstart
           code.language-js
             | const bot = require('bbot')
             | 
-            | bot.listenText(/say hello (.*)/i, (b) => {
-            |   b.respond(`Hello ${b.match[1]}!`)
+            | bot.listenText(/say Hello World/, (b) => {
+            |   b.respond(`Hello World!`)
             | })
             | 
             | bot.start()

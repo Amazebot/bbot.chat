@@ -12,17 +12,16 @@ h2 Chatbot Features
   .col-md-7
     p For basic prompts or button responses, you can use plain old expression matching to route to handlers. When that fails, input is passed to trained NLP providers that can infer more complicated intent and sentiment. 
     p We go with an Artificial Stupidity model first, for direct outcomes and snappy performance, where intelligence is sometimes overkill.
-//- .row.py-3
-//-   .col-md-5
-//-     h3 Conversation Branching
-//-   .col-md-7
-//-     p bBot was built for interactions that may go far beyond simple prompts and responses. It enables deep branching and context with step by step error handling. Conversations can be isolated to a single user or open to a whole channel, even allowing interactions to be authorised for specific groups.
 .row.py-3
   .col-md-5
-    h3 Simple States
+    h3 Conversation Branching
   .col-md-7
-    p Every middleware and callback handler in bBot is given a single consistent argument, the state object, we call it #[code b].
-    p The state object contains all the bot's properties and attributes of the current interaction; the user, their input and the matched text or results from language processing.
+    p bBot was built for interactions that may go far beyond simple prompts and responses. It enables deep branching and context with step by step error handling. Conversations can be isolated to a single user or open to a whole channel, even allowing interactions to be authorised for specific groups.
+.row.py-3
+  .col-md-5
+    h3 International Agent
+  .col-md-7
+    p Our users come from all over, so internationalisation was a core consideration. Message content can be defined in multiple languages and implemented with common handlers. Message templates can also be populated on send, with content specific to the user, data from the current application state or from external sources as required.
 .row.py-3
   .col-md-5
     h3 Full Control
@@ -34,11 +33,18 @@ h2 Chatbot Features
   .col-md-7
     p One of the strengths of bBot in dealing with many users and deep contexts, is that all critical components make use of asynchronous methods and middleware.
     p Custom middleware pieces can modify or interrupt at any point of processing a response, so subsequent interactions can build on and tailor the outcomes or route dialogue, without relying on hammy catch-all interactions to work around limitations.
-//- .row.py-3
-//-   .col-md-5
-//-     h3 International Agent
-//-   .col-md-7
-//-     p Our users come from all over, so internationalisation was a core consideration. Message content can be defined in multiple languages and implemented with common handlers. Message templates can also be populated on send, with content specific to the user, data from the current application state or from external sources as required.
+.row.py-3
+  .col-md-5
+    h3 Scalable Conversations
+  .col-md-7
+    p Our approach to conversation modelling provides a schema for defining each interaction, instead of trying to define all conversation pathways as one comprehensive work.
+    p Interactions can connect and relate to each other, or be isolated as required. This allows enterprise teams to co-author unique user journeys, each with its own change management, authentication and workflows.
+.row.py-3
+  .col-md-5
+    h3 Simple States
+  .col-md-7
+    p Every middleware and callback handler in bBot is given a single consistent argument, the state object, we call it #[code b].
+    p The state object contains all the bot's properties and attributes of the current interaction; the user, their input and the matched text or results from language processing.
 
 p.text-center
   a.btn.btn-lg.btn-primary(href="/modules") View Modules &amp; Roadmap
@@ -46,36 +52,36 @@ p.text-center
 h2 Engineering Features
 
 .row.py-3
+  .col-md-4
+    h3 Typescript 👏
   .col-md-8
     p That means its self documenting and can be compiled with a variety of configs for a range of Node compatibility and module systems.
     p From its strict typing, we also get code intel in IDEs and access to information that is critical for stateful applications, where modules can be extended outside the core package.
-  .col-md-4.text-right
-    h3 Typescript 👏
 .row.py-3
+  .col-md-4
+    h3 Async 👏
   .col-md-8
     p All operations and middleware handle asynchronous processing. No more hacks and workarounds when a conversation requires data from an external source to determine its course or populate content.
-  .col-md-4.text-right
-    h3 Async 👏
 .row.py-3
+  .col-md-4
+    h3 Testable 👏
   .col-md-8
     p bBot is for building enterprise grade software, so it's unit tested to the hilt!
     p It also exposes a number of test helpers for engineers to apply to their own conversation structures and extensions. Use the “pretend” adapter to run through scripted interactions between users in virtual rooms and make detailed assertions on expected outputs and internal states.
-  .col-md-4.text-right
-    h3 Testable 👏
 .row.py-3
+  .col-md-4
+    h3 Debuggable 👏
   .col-md-8
     p By using simple exported node scripts to start the bot, it can be more easily attached to debug inspectors.
     p The code is semantic and logic is easy to follow with minimal dependencies and simple module inheritance.
-  .col-md-4.text-right
-    h3 Debuggable 👏
+//- .row.py-3
+//-   .col-md-4
+//-     h3 Adaptable 👏
+//-   .col-md-8
+//-     p bBot's architecture allows an interchangeable stack of technologies, so you can select your favourite services.
+//-     p An internal Rest API provides access to its operations, memory and conversation states, so designers and developers can build new interpretations and interfaces for the bot.
 .row.py-3
-  .col-md-8
-    p bBot's architecture allows an interchangeable stack of technologies, so you can select your favourite services.
-    p An internal Rest API provides access to its operations, memory and conversation states, so designers and developers can build new interpretations and interfaces for the bot.
-  .col-md-4.text-right
-    h3 Adaptable 👏
-.row.py-3
+  .col-md-4
+    h3 Solid 👏
   .col-md-8
     p bBot uses a minimal set of some of the most common Node.js package dependencies, to provide mature and documented components for easier extension development. Nothing but the best baby!
-  .col-md-4.text-right
-    h3 Solid 👏
