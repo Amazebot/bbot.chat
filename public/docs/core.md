@@ -1,24 +1,49 @@
-## Installing and Running bBot
+[gh-starter]: https://github.com/Amazebot/bbot-starter
+[gl-starter]: https://glitch.com/edit/#!/remix/bbot-starter
 
-bBot is used as a dependency of a Node.js application, imported by either:
+## Importing the Package
+
+bBot is a dependency of a Node.js application.
+Let's start a new project and install it...
+
+```shell
+➜ code $ mkdir mybot
+➜ code $ cd mybot
+➜ mybot $ npm init -y
+➜ mybot $ npm install --save bbot
+➜ mybot $ touch index.js
+```
+
+Then import the package in **index.js** by either:
 
 `import * as bot from 'bbot'` (JavaScript ES6) or
 
 `const bot = require('bbot')` (JavaScript ES5)
 
-When the bot is first imported, it has a status of `waiting` before any adapter
-or middleware is loaded. At this point, its module prototypes could be modified
-for specific behaviour, before their instances are created.
+Now without any further setup you can start testing interactions by chatting in
+your terminal. Just run `node index.js`.
+
+Or use our starter code on Github or Glitch and start hacking! ✨
+
+<a href="https://github.com/Amazebot/bbot-starter" class="btn btn-secondary">Fork on Github</a>
+<a href="https://glitch.com/edit/#!/remix/bbot-starter" class="btn btn-secondary">Remix on Glitch</a>
+
+Bonus points for Typescript devs, bBot is exported with definitions. Yay types!
+
+## Package Modules
 
 The main bBot module exposes all of its sub-module's methods and constructors.
 Modules include, but are not limited to:
   - `config`      takes settings from command line or environment
-  - `events`      emits and attaches event listeners
+  - `events`      emits events and runs event callbacks
+  - `core`        controls status and initialises sub-modules
   - `brain`       sets and retrieves operational and user data
   - `logger`      writes logs to console and files
+  - `adapter`     parses information to and from external services
   - `thought`     processes incoming and outgoing messages
-  - `middlewares` conduct logic for each stage of processing
-  - `adapters`    parse information to and from external services
+  - `middleware`  conducts logic for each stage of processing
+  - `branch`      matches incoming messages to a behaviour
+  - `path`        defines conversational branches in context
 
 #### bBot Core <img src="/img/play.svg" />
 
@@ -32,6 +57,9 @@ behaviour when the status resolves.
 - `bot.pause()` does shutdown then returns to `loaded` for resuming as is
 - `bot.reset()` is used for testing, to clear and return to `waiting` status
 
+When bBot is first imported, it has a status of `waiting` before any adapter or
+middleware is loaded, so it can customised before `load` or `start` is called.
+
 `start` can be called without first calling `load`, to do both in one.
 
 `bot.getStatus()` returns the current status, being `waiting`, `loading`, 
@@ -40,14 +68,14 @@ behaviour when the status resolves.
 All status method emit events allowing apps hook into bBot startup/shutdown:
 `bot.events.on('loaded|started|shutdown|paused|waiting', () => /* callback */)`
 
-### Usage <img src="/img/code.svg" />
+## Usage
 
 Simple
 
 ```js
 import * as bot from 'bbot'
 
-// ...add listeners, middleware
+// ...add conversation logic (branches and middleware)
 
 bot.start()
 ```
@@ -70,7 +98,7 @@ class App {
 
     // ...connect events to custom callbacks
     // ...modify logger with custom transports
-    // ...add listeners, middleware
+    // ...add conversation logic
     
     this.bot.start()
   }
@@ -78,3 +106,6 @@ class App {
 
 new App().start()
 ```
+___
+
+<a href="/docs/path" class="btn btn-secondary">Keep learning ➮</a>

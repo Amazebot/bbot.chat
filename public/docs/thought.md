@@ -1,77 +1,106 @@
 The bBot thought process describes how this clever and purposeful bot
 elegantly handles discourse.
 
-It involves a series of processing steps, each invoking middleware for adding
-your own processes. Middleware pieces receive all data in the current state.
+It involves a sequence of state processing steps, each with middleware for
+adding your own subroutines. Each receives the state object, we call `b`.
+We'll come back to that.
 
-It all starts when the message adapter gives an incoming message to the bot via
-a `.receive` call.
+The following sequence starts when a messaging platform gives an incoming
+message to the bot...
 
-## Hear
+### 1. Hear
 
 bBbot hears all messages to determine if the context requires attention.
 It gather information for better listening, or ignores if it shouldn't listen.
 
 Add a middleware piece via `.hearMiddleware` to interrupt the process or modify
-the state for further processing.
+the state before further processing.
 
-## Listen
+### 2. Listen
 
-bBot takes in the message and if recognised, runs the scenario, furthering a
-conversation or a simple exchange. It may not be immediately understood.
-
-Listeners provide a matching function to evaluate the message and fire callbacks
-on match. They are added with the following methods:
-
-- `.listenText` adds regular expression matching on message text
-- `.listenDirect` adds regular expressions prepended with the bot's name
-- `.listenCustom` adds a custom matching method, e.g. match on an attribute
+bBot evaluates the message against the basic pattern or event matching branches
+in the current path. If matched, callbacks can **respond** and further a
+conversation or complete a simple exchange.
 
 Add a middleware piece via `.listenMiddleware` to fire on every matching
-listener, to interrupt or modify the state.
+branch, to interrupt or modify the state.
 
-If no listeners fire yet, we include listeners from the next (Understand) stage.
+### 3. Understand
 
-## Understand
+bBot can use natural language services to match on the _intent_ rather than the
+exact content. The nature of the message is collected from external providers.
 
-bBot can use natural language services to listen for the intent rather than the
-exact command. The nature of the message is collected from external providers.
-
-A special type of `NaturalLanguageListener` is used for this stage, that
-evaluates the intent, entities and/or sentiment of the message, by sending the
-message to the NLU adapter.
-
-- `.understandText` adds natural language matching criteria for NLU data
-<!-- - `.understandDirect` adds natural language that must be addressed to the bot -->
-- `.understandCustom` adds custom natural language matching on NLU data
+NLU branches evaluate the intent, entities and/or sentiment of the message, by
+first sending the message to the natural language adapter.
 
 Add a middleware piece via `.understandMiddleware` to execute on every matching
-language listener, to interrupt or modify the state.
+language branch, to interrupt or modify the state.
 
-## Act
+### 4. Act
 
-bBot takes action when all else fails, locally or through external integrations.
+bBot can take action when all else fails. This is an outcome of `listen` and
+`understand` both passing without any branch matching.
 
-This is an outcome of `listen` and `understand` stages passing without any
-listener matching, bBot creates a special `CatchAllMessage` message to receive
-with a new set of listeners that can take action when nothing else did.
+bBot creates a special catch-all message type which will match against any
+existing catch-all branches (usually you'd make just one, or none), to take
+action when nothing else did.
 
-- `.listenCatchAll` adds a callback for any unmatched message
+Add a middleware piece via `.actMiddleware` to execute on each catch-all branch,
+to interrupt or modify the state.
 
-Add a middleware piece via `.actMiddleware` to execute on every matching
-catch-all listener, to interrupt or modify the state.
-
-## Respond
+### X. Respond
 
 bBot replies to the people it's engaged with appropriately. Canned responses
 are mixed with context and may include rich UI elements.
 
 Add a middleware piece via `.respondMiddleware` to execute on any sends, if
-matched callbacks or bits prompted messages to be sent.
+matched callbacks prompted a response.
 
-## Remember
+Respond is processed after a matching listen, understand or act branch, so it
+could come sooner or later, or not at all. A bot can also dispatch a message
+unprompted, in which case _respond_ is the first thought process.
 
-bBot remembers everything, the person, context and content. Important details
-are kept for quick access. Everything else is stored for safekeeping.
+### 5. Remember
 
-That all might take a few milliseconds, then we're back at the beginning.
+bBot can remember everything in the current state, the person, context and
+content. Important details are kept for quick access. Everything else is stored
+for safekeeping by the storage adapter for your choice of data provider.
+
+Remember is always the last step in the sequence, for incoming and outgoings.
+
+That all might take a few milliseconds, then we're ready to start again.
+
+## The Bot State
+
+State instances (`b`) provide access to every attribute needed to process, take
+action and store incoming and outgoing messages and events. Including:
+
+- `bot` is the instance of the bot itself, e.g. `b.bot` 🤔
+- `done` flags if branch matching is complete.
+- `processed` keeps timestamps of all processed thoughts
+- `branches` collects any matched branches
+- `match` returns the latest branch's match
+- `matched` a boolean if any branch has matched
+- `message` is the incoming message object
+- `envelopes` collects outgoing dispatches
+- `sequence` identifies the origin of processing
+- `scope` relates to the path, "global" or otherwise
+- `method` is set depending on how respond is handled
+- `exit` flags that the state should be ignored
+
+Every middleware piece and branch callback receives the same state instance as
+it moves through the thought process. So they can read its history or write its
+future.
+
+## Usage
+
+The thought process is internal magic, it can be manipulated to create custom
+sequences, but that's for l33t haxxors only, we won't cover that in the basic
+guides.
+
+Usage examples for state can be found on the
+[Conversation Branching](/docs/path) and [Middleware](/docs/middleware) guides.
+
+---
+
+<a href="/docs/adapters" class="btn btn-secondary">Learn about adapters ➮</a>

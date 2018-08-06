@@ -16,12 +16,39 @@ Please [report an issue][issues] if you find any details incorrect or if we've
 missed something important.
 
 ## Hearing and Listening
-`listen`, `hear` and `respond` methods have counterparts within bBot but they work slightly differently and we've attempted to find more semantic naming.
 
-### Hear ➮ ListenText
+`listen`, `hear` and `respond` methods have counterparts within bBot but they
+work slightly differently and we've attempted to find more semantic naming.
+
+-- MOVE THIS PART INTO ITS OWN DOC, then just reference -
+-- Built for Branching
+
+The most important difference is that bBot is [built for branching]. So message
+matching happens on the type and content of the message, just as with Hubot, but
+also on the _scope_.
+
+Hubot's listeners had no scope, they were all what we refer to as global. In
+bBot, we can create global listeners from the `global` attribute, or on a
+specific `path` instance. The methods are the same in either case.
+
+---
+bBot has three stages of input matching (aka thought processes), these are
+listen, understand and act. They all apply a similar mechanism to what Hubot
+calls a listener, but the term listener was too general for the bBot usage, so
+we call them a **branch**.
+
+A collection of branches that are assessed within the same context is called a
+**path**. You can create any amount paths for isolating branches for specific
+contexts, but we have one `global` path for all the branches that are accessible
+without any context.
+---
+
+### `robot.hear` ➮ `bot.global.text`
 - In **Hubot** `hear` adds a text pattern listener
-- In **bBot** `listenText` does the same, where `hear` is the [process][thought]
-  which determines if incoming messages will be given to listeners
+- In **bBot** `text` called on a path does the same.
+
+In bBot `hear` refers to the [process][thought] which determines if incoming
+messages will be processed against branches.
 
 ### Respond ➮ ListenDirect
 - In **Hubot** `respond` adds a text pattern listener that will only match if

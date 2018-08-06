@@ -31,22 +31,22 @@ section#quickstart
           p 5. Run the bot with #[code node index.js]
       .col-12
         h3 #[include /img/message.svg] Hello World
-        p Create an #[b index.js] for a simple #[i hello] <whoever> chatbot...
+        p Create an #[b index.js] for a simple #[i hello world] chatbot 👋
         pre
           code.language-js
             | const bot = require('bbot')
             | 
-            | bot.listenText(/say Hello World/, (b) => {
+            | bot.global.text(/say Hello World/, (b) => {
             |   b.respond(`Hello World!`)
             | })
             | 
             | bot.start()
-        p Test interactions by chatting in your terminal...
+        p Test interactions by chatting in your terminal 👩‍💻
         pre.code-container
           code.shell
             img(src="/img/hello-content.png" width="100%")
     hr
-    a.btn.btn-secondary(href="/docs/core") See more docs
+    a.btn.btn-secondary(href="/docs/core") Learn more
 section#signup
   .container.py-5
     .row

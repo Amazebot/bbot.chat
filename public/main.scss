@@ -156,6 +156,14 @@ h2, h3, h4 {
     margin-top: 0
   }
 }
+blockquote {
+  background: $gray-100;
+  color: $gray-600;
+  border-left: $brand-lavender 3px solid;
+  padding: 0.2em 1em;
+  font-size: 1.1em;
+  p:last-child { margin: 0 }
+}
 
 h1, h2, h3, h4, footer {
   svg, img {

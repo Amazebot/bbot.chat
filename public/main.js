@@ -1,7 +1,6 @@
 jQuery(document).ready(function ($) {
-  $('.language-javascript, .language-js').each((i, block) => {
+  $('code[class^=language]').each((i, block) => {
     $(block).parent('pre').addClass('code-container')
-    $(block).addClass('javascript')
     hljs.highlightBlock(block)
   })
   $('.navbar .nav-item')
