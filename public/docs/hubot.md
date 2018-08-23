@@ -70,7 +70,7 @@ function.
 
 #### bBot
 ```js
-  bot.listenText(/.*/, () => console.log('I listen!'))
+  bot.global.text(/.*/, () => console.log('I listen!'))
 ```
 
 The semantics of Hubot's `Response` were sometimes misleading, as the "response"
@@ -88,7 +88,7 @@ listener callbacks and also provides methods to respond to a received message.
 
 #### Hubot
 ```js
-robot.receiveMiddleware((context, next, done) => {
+robot.middleware.receive((context, next, done) => {
   console.log('Received: ' + context.response.message.toString())
   next()
 })
@@ -99,11 +99,11 @@ robot.hear(/.*/, (response) => {
 
 #### bBot
 ```js
-bot.hearMiddleware((b, next, done) => {
+bot.middleware.hear((b, next, done) => {
   console.log(`Received: ${b.message.toString()}`)
   next()
 })
-bot.listenText(/.*/, (b) => {
+bot.global.text(/.*/, (b) => {
   console.log(`Matched on: ${JSON.stringify(b.match)}`)
 }
 ```
@@ -165,7 +165,7 @@ States can create and dispatch an envelope responding to an incoming message,
 inheriting the properties to address it back to the source. Using:
 - `respond` to compose and dispatch in one
 - `respondVia` to override the default dispatch method, compose and dispatch
-- `respondEnvelope` to get the envelope first, if it needs to be re-addressed to 
+- `envelope` to get the envelope first, if it needs to be re-addressed to 
   a different room or user
 
 ### Unprompted Outgoing
@@ -204,14 +204,14 @@ robot.hear(/welcome me to the (.*) room/i, (res) => {
 
 #### bBot
 ```js
-bot.listenText(/say hello to (.*)/i, (b) => {
+bot.global.text(/say hello to (.*)/i, (b) => {
   b.respond('Hello ' + res.match[1]
 })
-bot.listenText(/can anyone hear me/i, (b) => {
+bot.global.text(/can anyone hear me/i, (b) => {
   b.respondVia('react', ':raising-hand:')
 })
-bot.listenText(/welcome me to the (.*) room/i, (b) => {
-  b.respondEnvelope().toRoomName(b.match[1])
+bot.global.text(/welcome me to the (.*) room/i, (b) => {
+  b.envelope.toRoomName(b.match[1])
   b.respondVia('reply', 'Welcome')
 })
 ```

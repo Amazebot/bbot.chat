@@ -66,7 +66,7 @@ listener</li>
 function.</li>
 </ul>
 <h4>Hubot</h4><pre><code class="language-js">  robot.hear(/.*/, () =&gt; console.log(&#39;I hear!&#39;))</code></pre>
-<h4>bBot</h4><pre><code class="language-js">  bot.listenText(/.*/, () =&gt; console.log(&#39;I listen!&#39;))</code></pre>
+<h4>bBot</h4><pre><code class="language-js">  bot.global.text(/.*/, () =&gt; console.log(&#39;I listen!&#39;))</code></pre>
 <p>The semantics of Hubot&#39;s <code>Response</code> were sometimes misleading, as the &quot;response&quot;
 did not always comprise an actual response and may never be used to make one. It
 was more like a &quot;context&quot;, though there was also a <code>context</code> in use by
@@ -77,18 +77,18 @@ called <code>B</code>. The same state flows through middleware, listeners and re
 allowing callbacks to be informed by the full processing history.</p>
 <p>A state instance, <code>b</code> takes the place of <code>res</code> as the primary argument passed to
 listener callbacks and also provides methods to respond to a received message.</p>
-<h4>Hubot</h4><pre><code class="language-js">robot.receiveMiddleware((context, next, done) =&gt; {
+<h4>Hubot</h4><pre><code class="language-js">robot.middleware.receive((context, next, done) =&gt; {
   console.log(&#39;Received: &#39; + context.response.message.toString())
   next()
 })
 robot.hear(/.*/, (response) =&gt; {
   console.log(&#39;Matched on: &#39; + JSON.stringify(response.match))
 }</code></pre>
-<h4>bBot</h4><pre><code class="language-js">bot.hearMiddleware((b, next, done) =&gt; {
+<h4>bBot</h4><pre><code class="language-js">bot.middleware.hear((b, next, done) =&gt; {
   console.log(`Received: ${b.message.toString()}`)
   next()
 })
-bot.listenText(/.*/, (b) =&gt; {
+bot.global.text(/.*/, (b) =&gt; {
   console.log(`Matched on: ${JSON.stringify(b.match)}`)
 }</code></pre>
 <h2>Responding to Messages</h2><p>In Hubot, the <code>robot</code> and <code>response</code> both attempted to define a set of common
@@ -138,7 +138,7 @@ inheriting the properties to address it back to the source. Using:</p>
 <ul>
 <li><code>respond</code> to compose and dispatch in one</li>
 <li><code>respondVia</code> to override the default dispatch method, compose and dispatch</li>
-<li><code>respondEnvelope</code> to get the envelope first, if it needs to be re-addressed to 
+<li><code>envelope</code> to get the envelope first, if it needs to be re-addressed to 
 a different room or user</li>
 </ul>
 <h3>Unprompted Outgoing</h3><h4>Hubot</h4><pre><code class="language-js">const room = { name: &#39;general&#39; }
@@ -159,14 +159,14 @@ robot.hear(/welcome me to the (.*) room/i, (res) =&gt; {
   res.envelope.room = res.match[1]
   res.reply(&#39;Welcome&#39;)
 })</code></pre>
-<h4>bBot</h4><pre><code class="language-js">bot.listenText(/say hello to (.*)/i, (b) =&gt; {
+<h4>bBot</h4><pre><code class="language-js">bot.global.text(/say hello to (.*)/i, (b) =&gt; {
   b.respond(&#39;Hello &#39; + res.match[1]
 })
-bot.listenText(/can anyone hear me/i, (b) =&gt; {
+bot.global.text(/can anyone hear me/i, (b) =&gt; {
   b.respondVia(&#39;react&#39;, &#39;:raising-hand:&#39;)
 })
-bot.listenText(/welcome me to the (.*) room/i, (b) =&gt; {
-  b.respondEnvelope().toRoomName(b.match[1])
+bot.global.text(/welcome me to the (.*) room/i, (b) =&gt; {
+  b.envelope.toRoomName(b.match[1])
   b.respondVia(&#39;reply&#39;, &#39;Welcome&#39;)
 })</code></pre>
 <h3>Adapter Class</h3><h4>Hubot</h4><pre><code class="language-js">const { Adapter } = require(&#39;hubot&#39;)

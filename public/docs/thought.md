@@ -13,7 +13,7 @@ message to the bot...
 bBbot hears all messages to determine if the context requires attention.
 It gather information for better listening, or ignores if it shouldn't listen.
 
-Add a middleware piece via `.hearMiddleware` to interrupt the process or modify
+Add a middleware piece via `.middleware.hear` to interrupt the process or modify
 the state before further processing.
 
 ### 2. Listen
@@ -22,7 +22,7 @@ bBot evaluates the message against the basic pattern or event matching branches
 in the current path. If matched, callbacks can **respond** and further a
 conversation or complete a simple exchange.
 
-Add a middleware piece via `.listenMiddleware` to fire on every matching
+Add a middleware piece via `.middleware.listen` to fire on every matching
 branch, to interrupt or modify the state.
 
 ### 3. Understand
@@ -33,7 +33,7 @@ exact content. The nature of the message is collected from external providers.
 NLU branches evaluate the intent, entities and/or sentiment of the message, by
 first sending the message to the natural language adapter.
 
-Add a middleware piece via `.understandMiddleware` to execute on every matching
+Add a middleware piece via `.middleware.understand` to execute on every matching
 language branch, to interrupt or modify the state.
 
 ### 4. Act
@@ -45,7 +45,7 @@ bBot creates a special catch-all message type which will match against any
 existing catch-all branches (usually you'd make just one, or none), to take
 action when nothing else did.
 
-Add a middleware piece via `.actMiddleware` to execute on each catch-all branch,
+Add a middleware piece via `.middleware.act` to execute on each catch-all branch,
 to interrupt or modify the state.
 
 ### X. Respond
@@ -53,7 +53,7 @@ to interrupt or modify the state.
 bBot replies to the people it's engaged with appropriately. Canned responses
 are mixed with context and may include rich UI elements.
 
-Add a middleware piece via `.respondMiddleware` to execute on any sends, if
+Add a middleware piece via `.middleware.respond` to execute on any sends, if
 matched callbacks prompted a response.
 
 Respond is processed after a matching listen, understand or act branch, so it

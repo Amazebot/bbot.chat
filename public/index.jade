@@ -5,22 +5,35 @@ section#intro
         .col-md-6
             .big 👋
             h3.mt-1 Converse Anywhere
-            p bBot can model and execute conversation integrated with your preferred messaging, NLU, and data storage providers.
-            p Meet your audience wherever they live with conversational experiences that deliver services, tell stories, drive interaction.
+            p Create conversational apps integrated with your business systems and preferred platforms.
+            p Engage audiences via messaging with experiences that deliver services, tell stories, drive interaction.
         .col-md-6
             .big 💪
             h3.mt-1 Be Independent
             p As open source, self-hosted software under MIT licence, there's no registration, usage limits or platform dependencies.
             p Our focus is security and privacy. You keep full control of the conversation and user data with enterprise level audit trails.
+section#difference
+  .sub-hero.position-relative.overflow-hidden.clearfix.text-light
+    .container
+      .big 👩‍💻
+      h3.mt-1 Build Better Bots
+      .row.pb-5
+        .col-md-4
+          p bBot is made for tightly coupling application and conversation logic. Instead of surrendering control to cloud services.
+        .col-md-4
+          p bBot modules follow consistent standards and work in unison, instead of relying on external modules with variable standards.
+        .col-md-4
+          p bBot bots are version managed, easy to debug and exhaustively tested. Your team can work collaboratively, with confidence.
 section#quickstart
   .container.py-5
-    h2.h-anchor#buildingwithbbot Building with bBot
+    h2.h-anchor#buildingwithbbot Developer Intro
     .row
       .col-md-4
         h3 #[include /img/code.svg] Alpha Release
         p bBot alpha is in active development.
         p We're streamlining our docs and developer tools for writing, deploying and interacting with bBot instances as a matter of priority.
-        p For now, the quickest way to get started is to start a new local project, import bBot and start chatting in the command line.
+        p For now, the quickest way to get started is to use our starter code on Github and start hacking! ✨
+        a.btn.btn-secondary(href="https://github.com/Amazebot/bbot-boilerplate") Fork the boilerplate
       .col-md-8
         h3 #[include /img/play.svg] Quick Start
         .page-content.mb-4
@@ -29,6 +42,7 @@ section#quickstart
           p 3. Install bBot as a dependency with #[code npm install --save bbot]
           p 4. Create an #[strong index.js] file as per example below
           p 5. Run the bot with #[code node index.js]
+    .row.mt-md-3
       .col-12
         h3 #[include /img/message.svg] Hello World
         p Create an #[b index.js] for a simple #[i hello world] chatbot 👋
@@ -41,7 +55,7 @@ section#quickstart
             | })
             | 
             | bot.start()
-        p Test interactions by chatting in your terminal 👩‍💻
+        p Test interactions by chatting in your terminal 💻
         pre.code-container
           code.shell
             img(src="/img/hello-content.png" width="100%")

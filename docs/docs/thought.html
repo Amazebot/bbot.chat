@@ -28,29 +28,29 @@ We&#39;ll come back to that.</p>
 message to the bot...</p>
 <h3>1. Hear</h3><p>bBbot hears all messages to determine if the context requires attention.
 It gather information for better listening, or ignores if it shouldn&#39;t listen.</p>
-<p>Add a middleware piece via <code>.hearMiddleware</code> to interrupt the process or modify
+<p>Add a middleware piece via <code>.middleware.hear</code> to interrupt the process or modify
 the state before further processing.</p>
 <h3>2. Listen</h3><p>bBot evaluates the message against the basic pattern or event matching branches
 in the current path. If matched, callbacks can <strong>respond</strong> and further a
 conversation or complete a simple exchange.</p>
-<p>Add a middleware piece via <code>.listenMiddleware</code> to fire on every matching
+<p>Add a middleware piece via <code>.middleware.listen</code> to fire on every matching
 branch, to interrupt or modify the state.</p>
 <h3>3. Understand</h3><p>bBot can use natural language services to match on the <em>intent</em> rather than the
 exact content. The nature of the message is collected from external providers.</p>
 <p>NLU branches evaluate the intent, entities and/or sentiment of the message, by
 first sending the message to the natural language adapter.</p>
-<p>Add a middleware piece via <code>.understandMiddleware</code> to execute on every matching
+<p>Add a middleware piece via <code>.middleware.understand</code> to execute on every matching
 language branch, to interrupt or modify the state.</p>
 <h3>4. Act</h3><p>bBot can take action when all else fails. This is an outcome of <code>listen</code> and
 <code>understand</code> both passing without any branch matching.</p>
 <p>bBot creates a special catch-all message type which will match against any
 existing catch-all branches (usually you&#39;d make just one, or none), to take
 action when nothing else did.</p>
-<p>Add a middleware piece via <code>.actMiddleware</code> to execute on each catch-all branch,
+<p>Add a middleware piece via <code>.middleware.act</code> to execute on each catch-all branch,
 to interrupt or modify the state.</p>
 <h3>X. Respond</h3><p>bBot replies to the people it&#39;s engaged with appropriately. Canned responses
 are mixed with context and may include rich UI elements.</p>
-<p>Add a middleware piece via <code>.respondMiddleware</code> to execute on any sends, if
+<p>Add a middleware piece via <code>.middleware.respond</code> to execute on any sends, if
 matched callbacks prompted a response.</p>
 <p>Respond is processed after a matching listen, understand or act branch, so it
 could come sooner or later, or not at all. A bot can also dispatch a message

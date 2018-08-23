@@ -1,6 +1,3 @@
-[gh-starter]: https://github.com/Amazebot/bbot-starter
-[gl-starter]: https://glitch.com/edit/#!/remix/bbot-starter
-
 ## Importing the Package
 
 bBot is a dependency of a Node.js application.
@@ -23,10 +20,10 @@ Then import the package in **index.js** by either:
 Now without any further setup you can start testing interactions by chatting in
 your terminal. Just run `node index.js`.
 
-Or use our starter code on Github or Glitch and start hacking! ✨
+Or use our starter code on Github and start hacking! ✨
 
-<a href="https://github.com/Amazebot/bbot-starter" class="btn btn-secondary">Fork on Github</a>
-<a href="https://glitch.com/edit/#!/remix/bbot-starter" class="btn btn-secondary">Remix on Glitch</a>
+<a href="https://github.com/Amazebot/bbot-boilerplate" class="btn btn-secondary">Fork on Github</a>
+<!-- <a href="https://glitch.com/edit/#!/remix/bbot-starter" class="btn btn-secondary">Remix on Glitch</a> -->
 
 Bonus points for Typescript devs, bBot is exported with definitions. Yay types!
 
@@ -44,6 +41,9 @@ Modules include, but are not limited to:
   - `middleware`  conducts logic for each stage of processing
   - `branch`      matches incoming messages to a behaviour
   - `path`        defines conversational branches in context
+  - `request`     makes http/s requests, with get/post handlers
+  - `memory`      sets and gets operational and user data
+  - `store`       keeps and finds persistent (long-term) data
 
 #### bBot Core <img src="/img/play.svg" />
 

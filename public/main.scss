@@ -124,10 +124,6 @@ header {
   color: $brand-grey;
   background: $gray-100;
 }
-.hero {
-  background-image: url("/img/hero-bg.png");
-  background-color: $brand-blue;
-}
 main {
   background: $gray-100;
   padding-bottom: 2em;
@@ -188,20 +184,20 @@ h1, h2, h3, h4, footer {
 }
 
 .hero {
-  padding-top: 90px;
-  margin-top: -45px;
   background-image: url("/img/hero-bg.png");
+  background-color: $brand-blue;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  margin-top: -45px;
   -webkit-clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
           clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
 }
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  height: 100%;
+.sub-hero {
+  margin-top: -90px;
+  padding-top: 45px;
   background-color: $brand-blue;
+  -webkit-clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(0 0, 100% 90px, 100% 100%, 0 100%, 0 0);
 }
 
 .page-content {
