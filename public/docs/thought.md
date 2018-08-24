@@ -10,7 +10,7 @@ message to the bot...
 
 ### 1. Hear
 
-bBbot hears all messages to determine if the context requires attention.
+bBot hears all messages to determine if the context requires attention.
 It gather information for better listening, or ignores if it shouldn't listen.
 
 Add a middleware piece via `.middleware.hear` to interrupt the process or modify
