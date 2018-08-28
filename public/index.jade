@@ -1,29 +1,43 @@
 section#intro
   .hero.position-relative.overflow-hidden.clearfix.text-light
     .container
-      .row.pb-5
+      .row.pb-4
         .col-md-6
-            .big 👋
-            h3.mt-1 Converse Anywhere
-            p Create conversational apps integrated with your business systems and preferred platforms.
-            p Engage audiences via messaging with experiences that deliver services, tell stories, drive interaction.
+          .big 👋
+          h3.mt-1 Converse Anywhere
+          p Create conversational apps integrated with your business systems and preferred platforms.
+          p Meet your audience wherever they are, to deliver services, tell stories and drive interaction.
         .col-md-6
-            .big 💪
-            h3.mt-1 Be Independent
-            p As open source, self-hosted software under MIT licence, there's no registration, usage limits or platform dependencies.
-            p Our focus is security and privacy. You keep full control of the conversation and user data with enterprise level audit trails.
+          .big 💪
+          h3.mt-1 Be Independent
+          p As open source, self-hosted software under MIT licence, there's no registration, usage limits or platform dependencies.
+          p Our focus is security and privacy. You keep full control of the conversation and user data with enterprise level audit trails.
 section#difference
   .sub-hero.position-relative.overflow-hidden.clearfix.text-light
-    .container
+    .container.pb-4
       .big 👩‍💻
       h3.mt-1 Build Better Bots
-      .row.pb-5
-        .col-md-4
-          p bBot is made for tightly coupling application and conversation logic. Instead of surrendering control to cloud services.
-        .col-md-4
-          p bBot modules follow consistent standards and work in unison, instead of relying on external modules with variable standards.
-        .col-md-4
-          p bBot bots are version managed, easy to debug and exhaustively tested. Your team can work collaboratively, with confidence.
+      .row
+        .col-md-6
+          p 
+            | Use our framework to adapt to unique requirements.<br>
+            | Don't surrender control to cloud services.
+          p ✅ Build integrations for business logic
+          p ✅ Can run entirely on-premise
+          p ✅ Persist data beyond bot run time
+          p ✅ Rapid prototypes with staged deployments
+          p ✅ Version managed, easy to debug and test
+          p ✅ Isolate content for team co-author workflows
+        .col-md-6
+          p
+            | bBot provides a full suite of conversational features.<br>
+            | Consistent standards let you build with confidence.
+          p ✅ Remember user details and personalise messages
+          p ✅ Translate and filter content asynchronously
+          p ✅ Use conversation context for dynamic branching
+          p ✅ Combine NLU with simple text matching
+          p ✅ Tailor error responses specific to each branch
+          p ✅ Handle conversations with input from multiple users
 section#quickstart
   .container.py-5
     h2.h-anchor#buildingwithbbot Developer Intro
@@ -31,8 +45,8 @@ section#quickstart
       .col-md-4
         h3 #[include /img/code.svg] Alpha Release
         p bBot alpha is in active development.
-        p We're streamlining our docs and developer tools for writing, deploying and interacting with bBot instances as a matter of priority.
-        p For now, the quickest way to get started is to use our starter code on Github and start hacking! ✨
+        p We're streamlining our docs and developer tools as a matter of priority.
+        p The quickest way to get started is to grab our boilerplate code and get hacking! ✨
         a.btn.btn-secondary(href="https://github.com/Amazebot/bbot-boilerplate") Fork the boilerplate
       .col-md-8
         h3 #[include /img/play.svg] Quick Start
@@ -45,7 +59,7 @@ section#quickstart
     .row.mt-md-3
       .col-12
         h3 #[include /img/message.svg] Hello World
-        p Create an #[b index.js] for a simple #[i hello world] chatbot 👋
+        p Create an #[b index.js] for a simple #[i hello world] chatbot
         pre
           code.language-js
             | const bot = require('bbot')
@@ -55,7 +69,7 @@ section#quickstart
             | })
             | 
             | bot.start()
-        p Test interactions by chatting in your terminal 💻
+        p Test interactions by chatting in your terminal
         pre.code-container
           code.shell
             img(src="/img/hello-content.png" width="100%")
@@ -135,13 +149,6 @@ section#sponsors
           | offering by partnering with select sponsors. Be part of the future of conversation.
         p.text-right
           a(href="mailto:hello@amazebot.chat").btn.btn-secondary Get in touch
-
-//- - Package
-//-   - Repo (GitHub)
-//-   - Readme (NPM)
-//-   - Tests
-//-   - Build & Coverage
-//-   - Dependencies
 
 //- - Prototype on Glitch with Rocket.Chat
 //-   - Remix project

@@ -112,7 +112,11 @@ ul
     p
       | Assigns every listener, message, user and state instance within either a hash 
       | or sequential id, tracing every event to it's source.
-  
+  .col-sm-6
+    h4 #[include /img/server.svg]  HTTP Requests
+    p
+      | Post or get content between the bot and external services to provide real-time 
+      | context to an interaction.
 hr
 p In development...
 .row
@@ -126,11 +130,6 @@ p In development...
     p
       | An internal express server sets up HTTP listeners, to change the bot's state 
       | or trigger interactions in the message platform.
-  .col-sm-6
-    h4 #[include /img/server.svg]  HTTP Requests
-    p
-      | Post or get content between the bot and external services to provide real-time 
-      | context to an interaction.
 
 h2 #[a(name='beta')] Beta Modules
 .row
