@@ -6,12 +6,21 @@
 > 
 > -- bBot ©️ 2018
 
-A **branch** is essentially a matching function and a callback. When messages are
-received, each branch is processed and its callback called if matched.
+A **branch** is a piece of logic that applies when input is matched. It may
+trigger a response or data processing, possibly even creating more branches.
 
-Normally processing ends when a matching branch is found, but branches can have
-a `force` attribute, so they will always be processed, regardless if another
-branch has already matched. They can also overrule further processing.
+Each branch has a matcher and a callback and may have other behaviours
+configured by an options object. Branches are declared from a **path**, to be
+processed against all incoming messages, or only following another branch.
+
+There are different types of branch for matching different types of input, but
+all callbacks follow the same pattern, which receives the state `b` argument
+providing access to conversational context and utilities to take action.
+
+When messages are received, branches are processed and callbacks for a matching
+branch are called. Normally processing ends when a matching branch is found,
+but branch options can set a `force` attribute so they will always be processed,
+regardless if another branch has already matched.
 
 A **path** is parent to a collection of branches. Path methods provide helpers
 for adding different types of branches:
@@ -37,6 +46,23 @@ for adding different types of branches:
 - [`catchAll`](https://amazebot.github.io/bbot/classes/path.html#catchall)
   matches only when nothing else has
 
+### Branch Matching
+
+When processing incoming messages, each branch's matching function is applied.
+If the function returns a truthy value (e.g. a regex match object), then the
+callback is fired.
+
+Text branches accept semantic attributes handled by our **conditions** module,
+such as `{ contains: 'hello' }` or `{ is: 'cancel' }`. For more advanced text
+matching you can use regular expressions instead.
+
+Read the Conditions docs for details of the available attributes.
+
+NLU branches accept a standard **criteria** object, defining the conditions that
+should be met in the result that is returned from natural language processing.
+
+Read the NLU doc for more details on using NLU criteria.
+
 ### Branch Callbacks
 
 All branch callbacks receive the same single argument, the bot **state** object. 
@@ -57,68 +83,49 @@ without specific context.
 
 ## Usage
 
-Simple
+Matching Pattern
 
 ```js
-import * as bot from 'bbot'
-
-// Respond when someone says hi to the bot
-bot.global.textDirect(/hi/i, (b) => b.respond('Hello!'))
-
-// React with a wave emoji when anyone says hi
-bot.global.text(/hi/i, (b) => b.respondVia('react', '👋'))
-
-bot.start()
+// Respond when someone says hello
+bot.global.text(/hello/i, (b) => b.respond('Hello!'))
 ```
 
-Advanced
+Matching Conditions
 
 ```js
-const bot = require('bbot')
-const { get } = require('https')
-
-// Respond using an attribute from the match
-bot.global.text(/door number ([1-3]{1})/, async (b) => {
-  switch (b.match[1]) {
-    case '1': await b.respond(`You win nothing 💔`); break
-    case '2': await b.respond(`You win a monkey 🐒`); break
-    case '3': await b.respond(`It's a new car!! 🚗`); break
-  }
-})
-
-// Respond after some processing, e.g. requesting data
-bot.global.text(/corporate/i, async (b) => {
-  const bs = await new Promise((resolve, reject) => {
-    get('https://corporatebs-generator.sameerkumar.website/', (res) => {
-      let data = ''
-      res.on('data', (chunk) => { data += chunk })
-      res.on('end', () => resolve(JSON.parse(data).phrase))
-      res.on('error', (err) => {
-        b.bot.logger.error(`Failed getting corporate bs ${err.message}`)
-        resolve()
-      })
-    })
-  })
-  if (bs) await b.respond(bs)
-})
-
-// Let them know the bot is ALWAYS watching (even if already responded)
-bot.global.text(/anyone/i, (b) => b.respondVia('react', '👀'), {
-  force: true
-})
-
-// Take decisive action when all else fails
-bot.global.catchAll((b) => b.respondVia('react', '🤷‍'))
-
-bot.start()
+// Respond when someone says hello
+bot.global.text({ contains: 'hello' }, (b) => b.respond('Hello!'))
 ```
 
-Test the above with inputs like:
-  - "what does corporate say?"
-  - "what's behind door number 2?"
-  - "is anyone out there?"
-  - "fhwdgads!"
+Custom Matching
 
+```js
+// Respond only on Wednesdays (with branch ID)
+bot.global.custom((message) => {
+  if (new Date().getDay() !== 3) return false
+  else return /hello/i.test(message.toString())
+}, (b) => b.respond('Hello!'), {
+  id: 'wednesday-hello'
+})
+```
+
+Force Matching
+
+```js
+// React when someone says hi or hello
+bot.global.text({
+  contains: [ 'hi', 'hello' ]
+}, (b) => b.respondVia('react', ':wave:'), {
+  id: 'hello-react'
+})
+
+// Add another emoji to reaction when text contains "baby"
+bot.global.text({
+  contains: 'baby'
+}, (b) => b.respondVia('react', ':baby:'), {
+  id: 'baby-react', force: true
+})
+```
 ---
 
 <a href="/docs/thought" class="btn btn-secondary">Learn more about `b` ➮</a>

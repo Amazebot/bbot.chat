@@ -20,71 +20,67 @@ missed something important.
 `listen`, `hear` and `respond` methods have counterparts within bBot but they
 work slightly differently and we've attempted to find more semantic naming.
 
--- MOVE THIS PART INTO ITS OWN DOC, then just reference -
--- Built for Branching
+The most important difference is that bBot is [built for branching](/docs/path).
+So message matching happens on the type and content of the message, just as with
+Hubot, but also on the _scope_. We refer to all "listeners" as branches.
 
-The most important difference is that bBot is [built for branching]. So message
-matching happens on the type and content of the message, just as with Hubot, but
-also on the _scope_.
-
-Hubot's listeners had no scope, they were all what we refer to as global. In
-bBot, we can create global listeners from the `global` attribute, or on a
+Hubot's listeners had no scope, they were all what we refer to as _global_. In
+bBot, we can create global branches from the `global` attribute, or on a
 specific `path` instance. The methods are the same in either case.
 
----
-bBot has three stages of input matching (aka thought processes), these are
-listen, understand and act. They all apply a similar mechanism to what Hubot
-calls a listener, but the term listener was too general for the bBot usage, so
-we call them a **branch**.
+### Hear ➮ Text
 
-A collection of branches that are assessed within the same context is called a
-**path**. You can create any amount paths for isolating branches for specific
-contexts, but we have one `global` path for all the branches that are accessible
-without any context.
----
+In **Hubot** `hear` adds a text pattern listener.
 
-### `robot.hear` ➮ `bot.global.text`
-- In **Hubot** `hear` adds a text pattern listener
-- In **bBot** `text` called on a path does the same.
+In **bBot** `text` does the same, called on a path like `bot.global.text`.
 
-In bBot `hear` refers to the [process][thought] which determines if incoming
-messages will be processed against branches.
+`hear` refers to the [process][thought] which determines if incoming messages
+will be processed against branches.
 
 ### Respond ➮ ListenDirect
-- In **Hubot** `respond` adds a text pattern listener that will only match if
-  prefixed with the bot's name
-- In **bBot** `listenDirect` does the same, where `respond` is used to actually
-  initiate the outgoing response and the [process][thought] to handle it
+
+In **Hubot** `respond` adds a text pattern listener that will only match if
+prefixed with the bot's name.
+
+In **bBot** `direct` does the same, called on a path like `bot.global.direct`.
+
+`respond` is used to actually initiate the outgoing response and the
+[process][thought] to handle it.
 
 ### Listen ➮ ListenCustom
-- In **Hubot** `listen` is a sort of abstract for both `hear` and `respond`
-- In **bBot** `listen` is the [process][thought] which provides messages to each
-  listener
-- `listenCustom` can be used to create a listener with a custom matching
-function.
+  
+In **Hubot** `listen` is a sort of abstract for both `hear` and `respond`.
 
-#### Hubot
+In **bBot** `custom` can be used to create a branch with a custom matcher.
+
+`listen` is the [process][thought] which provides messages to each branch.
+
+#### Usage
+
+Hubot
 ```js
-  robot.hear(/.*/, () => console.log('I hear!'))
+  robot.hear(/.*/, () => console.log('I listen!'))
 ```
 
-#### bBot
+bBot
 ```js
-  bot.global.text(/.*/, () => console.log('I listen!'))
+  bot.global.text(/.*/, () => console.log('I branch!'))
 ```
+
+### Response and Context == State
 
 The semantics of Hubot's `Response` were sometimes misleading, as the "response"
 did not always comprise an actual response and may never be used to make one. It
 was more like a "context", though there was also a `context` in use by
 middleware (which response was a property of) but the full context was not
-available to higher level functions, like listeners.
+available to higher level functions, like listeners. 🤯
 
 In bBot, we've merged `context` and `response` into an all seeing state class
-called `B`. The same state flows through middleware, listeners and responses,
-allowing callbacks to be informed by the full processing history.
+called `B`. The same state flows through middleware and branches, allowing
+callbacks to be informed by the full processing history.
 
 A state instance, `b` takes the place of `res` as the primary argument passed to
-listener callbacks and also provides methods to respond to a received message.
+branch callbacks and also provides methods to respond to a received message.
 
 #### Hubot
 ```js
@@ -112,10 +108,12 @@ bot.global.text(/.*/, (b) => {
 
 In Hubot, the `robot` and `response` both attempted to define a set of common
 methods for handling outgoings, like `reply` and `send`, however the semantics
-were a bit off. Sometimes `reply` was used unprompted by an incoming message,
-so it wasn't really replying, sometimes `send` would be used to "reply".
-Sometimes a platform adapter did not support all the defined methods or needed
-extending with custom methods of it's own, used inconsistently with Hubot's.
+were a bit off.
+
+Sometimes `reply` was used unprompted by an incoming message, so it wasn't
+really replying. Sometimes `send` would be used to "reply". Sometimes a platform
+adapter did not support all the defined methods or needed extending with custom
+methods of it's own, used inconsistently with Hubot's.
 
 bBot takes a different approach, using an envelope's `method` attribute to
 define how the adapter should handle it, e.g as a send (default), an emoji
@@ -137,9 +135,9 @@ address outgoing content, can be unprompted or created to respond to a received
 message. The message adapter parses those back into the messaging platform.
 
 In Hubot, envelopes were often plain objects, but bBot adds some helpers to
-set attributes and the `room` attribute of an envelope in bBot explicitly
-contains `name` or `id` attributes, so adapters can perform better as they don't
-need multiple lookups to determine which was given.
+set attributes. The `room` attribute of an envelope in bBot explicitly contains
+`name` or `id` attributes, so adapters can perform better as they don't need
+multiple lookups to determine which was given.
 
 ### Forming a Response
 
@@ -164,6 +162,7 @@ Envelope helpers are as follows (and can be chained together):
 States can create and dispatch an envelope responding to an incoming message,
 inheriting the properties to address it back to the source. Using:
 - `respond` to compose and dispatch in one
+- `reply` to compose and dispatch in one, with the username prefixed
 - `respondVia` to override the default dispatch method, compose and dispatch
 - `envelope` to get the envelope first, if it needs to be re-addressed to 
   a different room or user
@@ -175,7 +174,6 @@ inheriting the properties to address it back to the source. Using:
 const room = { name: 'general' }
 const user = { name: 'bilbo' }
 robot.messageRoom(room.name, 'hello #' + room.name)
-robot.reply({ room, user }, 'hello you')
 ```
 
 #### bBot
@@ -183,7 +181,6 @@ robot.reply({ room, user }, 'hello you')
 const room = { name: 'general' }
 const user = { name: 'bilbo' }
 bot.dispatch(new bot.Envelope({ room }).compose('hello #' + room.name))
-bot.dispatch(new bot.Envelope({ user }).compose('hello you').via('reply'))
 ```
 
 ### Responding to Incoming
@@ -196,23 +193,15 @@ robot.hear(/say hello to (.*)/i, (res) => {
 robot.hear(/can anyone hear me/i, (res) => {
 robot.adapter.react(res.envelope, ':raising-hand:')
 })
-robot.hear(/welcome me to the (.*) room/i, (res) => {
-  res.envelope.room = res.match[1]
-  res.reply('Welcome')
-})
 ```
 
 #### bBot
 ```js
 bot.global.text(/say hello to (.*)/i, (b) => {
-  b.respond('Hello ' + res.match[1]
+  b.respond('Hello ' + b.match[1]
 })
 bot.global.text(/can anyone hear me/i, (b) => {
   b.respondVia('react', ':raising-hand:')
-})
-bot.global.text(/welcome me to the (.*) room/i, (b) => {
-  b.envelope.toRoomName(b.match[1])
-  b.respondVia('reply', 'Welcome')
 })
 ```
 

@@ -30,53 +30,38 @@ users.</p>
 missed something important.</p>
 <h2>Hearing and Listening</h2><p><code>listen</code>, <code>hear</code> and <code>respond</code> methods have counterparts within bBot but they
 work slightly differently and we&#39;ve attempted to find more semantic naming.</p>
-<p>-- MOVE THIS PART INTO ITS OWN DOC, then just reference -
--- Built for Branching</p>
-<p>The most important difference is that bBot is [built for branching]. So message
-matching happens on the type and content of the message, just as with Hubot, but
-also on the <em>scope</em>.</p>
-<p>Hubot&#39;s listeners had no scope, they were all what we refer to as global. In
-bBot, we can create global listeners from the <code>global</code> attribute, or on a
+<p>The most important difference is that bBot is <a href="/docs/path">built for branching</a>.
+So message matching happens on the type and content of the message, just as with
+Hubot, but also on the <em>scope</em>. We refer to all &quot;listeners&quot; as branches.</p>
+<p>Hubot&#39;s listeners had no scope, they were all what we refer to as <em>global</em>. In
+bBot, we can create global branches from the <code>global</code> attribute, or on a
 specific <code>path</code> instance. The methods are the same in either case.</p>
-<hr>
-<p>bBot has three stages of input matching (aka thought processes), these are
-listen, understand and act. They all apply a similar mechanism to what Hubot
-calls a listener, but the term listener was too general for the bBot usage, so
-we call them a <strong>branch</strong>.</p>
-<p>A collection of branches that are assessed within the same context is called a
-<strong>path</strong>. You can create any amount paths for isolating branches for specific
-contexts, but we have one <code>global</code> path for all the branches that are accessible</p>
-<h2>without any context.</h2><h3><code>robot.hear</code> ➮ <code>bot.global.text</code></h3><ul>
-<li>In <strong>Hubot</strong> <code>hear</code> adds a text pattern listener</li>
-<li>In <strong>bBot</strong> <code>text</code> called on a path does the same.</li>
-</ul>
-<p>In bBot <code>hear</code> refers to the <a href="./thought">process</a> which determines if incoming
-messages will be processed against branches.</p>
-<h3>Respond ➮ ListenDirect</h3><ul>
-<li>In <strong>Hubot</strong> <code>respond</code> adds a text pattern listener that will only match if
-prefixed with the bot&#39;s name</li>
-<li>In <strong>bBot</strong> <code>listenDirect</code> does the same, where <code>respond</code> is used to actually
-initiate the outgoing response and the <a href="./thought">process</a> to handle it</li>
-</ul>
-<h3>Listen ➮ ListenCustom</h3><ul>
-<li>In <strong>Hubot</strong> <code>listen</code> is a sort of abstract for both <code>hear</code> and <code>respond</code></li>
-<li>In <strong>bBot</strong> <code>listen</code> is the <a href="./thought">process</a> which provides messages to each
-listener</li>
-<li><code>listenCustom</code> can be used to create a listener with a custom matching
-function.</li>
-</ul>
-<h4>Hubot</h4><pre><code class="language-js">  robot.hear(/.*/, () =&gt; console.log(&#39;I hear!&#39;))</code></pre>
-<h4>bBot</h4><pre><code class="language-js">  bot.global.text(/.*/, () =&gt; console.log(&#39;I listen!&#39;))</code></pre>
-<p>The semantics of Hubot&#39;s <code>Response</code> were sometimes misleading, as the &quot;response&quot;
+<h3>Hear ➮ Text</h3><p>In <strong>Hubot</strong> <code>hear</code> adds a text pattern listener.</p>
+<p>In <strong>bBot</strong> <code>text</code> does the same, called on a path like <code>bot.global.text</code>.</p>
+<p><code>hear</code> refers to the <a href="./thought">process</a> which determines if incoming messages
+will be processed against branches.</p>
+<h3>Respond ➮ ListenDirect</h3><p>In <strong>Hubot</strong> <code>respond</code> adds a text pattern listener that will only match if
+prefixed with the bot&#39;s name.</p>
+<p>In <strong>bBot</strong> <code>direct</code> does the same, called on a path like <code>bot.global.direct</code>.</p>
+<p><code>respond</code> is used to actually initiate the outgoing response and the
+<a href="./thought">process</a> to handle it.</p>
+<h3>Listen ➮ ListenCustom</h3><p>In <strong>Hubot</strong> <code>listen</code> is a sort of abstract for both <code>hear</code> and <code>respond</code>.</p>
+<p>In <strong>bBot</strong> <code>custom</code> can be used to create a branch with a custom matcher.</p>
+<p><code>listen</code> is the <a href="./thought">process</a> which provides messages to each branch.</p>
+<h4>Usage</h4><p>Hubot</p>
+<pre><code class="language-js">  robot.hear(/.*/, () =&gt; console.log(&#39;I listen!&#39;))</code></pre>
+<p>bBot</p>
+<pre><code class="language-js">  bot.global.text(/.*/, () =&gt; console.log(&#39;I branch!&#39;))</code></pre>
+<h3>Response and Context == State</h3><p>The semantics of Hubot&#39;s <code>Response</code> were sometimes misleading, as the &quot;response&quot;
 did not always comprise an actual response and may never be used to make one. It
 was more like a &quot;context&quot;, though there was also a <code>context</code> in use by
 middleware (which response was a property of) but the full context was not
-available to higher level functions, like listeners.</p>
+available to higher level functions, like listeners. 🤯</p>
 <p>In bBot, we&#39;ve merged <code>context</code> and <code>response</code> into an all seeing state class
-called <code>B</code>. The same state flows through middleware, listeners and responses,
-allowing callbacks to be informed by the full processing history.</p>
+called <code>B</code>. The same state flows through middleware and branches, allowing
+callbacks to be informed by the full processing history.</p>
 <p>A state instance, <code>b</code> takes the place of <code>res</code> as the primary argument passed to
-listener callbacks and also provides methods to respond to a received message.</p>
+branch callbacks and also provides methods to respond to a received message.</p>
 <h4>Hubot</h4><pre><code class="language-js">robot.middleware.receive((context, next, done) =&gt; {
   console.log(&#39;Received: &#39; + context.response.message.toString())
   next()
@@ -93,10 +78,11 @@ bot.global.text(/.*/, (b) =&gt; {
 }</code></pre>
 <h2>Responding to Messages</h2><p>In Hubot, the <code>robot</code> and <code>response</code> both attempted to define a set of common
 methods for handling outgoings, like <code>reply</code> and <code>send</code>, however the semantics
-were a bit off. Sometimes <code>reply</code> was used unprompted by an incoming message,
-so it wasn&#39;t really replying, sometimes <code>send</code> would be used to &quot;reply&quot;.
-Sometimes a platform adapter did not support all the defined methods or needed
-extending with custom methods of it&#39;s own, used inconsistently with Hubot&#39;s.</p>
+were a bit off.</p>
+<p>Sometimes <code>reply</code> was used unprompted by an incoming message, so it wasn&#39;t
+really replying. Sometimes <code>send</code> would be used to &quot;reply&quot;. Sometimes a platform
+adapter did not support all the defined methods or needed extending with custom
+methods of it&#39;s own, used inconsistently with Hubot&#39;s.</p>
 <p>bBot takes a different approach, using an envelope&#39;s <code>method</code> attribute to
 define how the adapter should handle it, e.g as a send (default), an emoji
 reaction, a topic change, whatever. This provides message adapters more
@@ -113,9 +99,9 @@ incoming object from a messaging platform, parsed by the adapter. Envelopes
 address outgoing content, can be unprompted or created to respond to a received
 message. The message adapter parses those back into the messaging platform.</p>
 <p>In Hubot, envelopes were often plain objects, but bBot adds some helpers to
-set attributes and the <code>room</code> attribute of an envelope in bBot explicitly
-contains <code>name</code> or <code>id</code> attributes, so adapters can perform better as they don&#39;t
-need multiple lookups to determine which was given.</p>
+set attributes. The <code>room</code> attribute of an envelope in bBot explicitly contains
+<code>name</code> or <code>id</code> attributes, so adapters can perform better as they don&#39;t need
+multiple lookups to determine which was given.</p>
 <h3>Forming a Response</h3><p>Hubot&#39;s outgoing methods accepted arguments for composing <strong>and</strong> dispatching
 the envelope, sometimes in different positions. Some methods accepted strings,
 some took the whole envelope object. This often led to tricky argument slicing
@@ -137,37 +123,28 @@ with the <em>what</em>.</p>
 inheriting the properties to address it back to the source. Using:</p>
 <ul>
 <li><code>respond</code> to compose and dispatch in one</li>
+<li><code>reply</code> to compose and dispatch in one, with the username prefixed</li>
 <li><code>respondVia</code> to override the default dispatch method, compose and dispatch</li>
 <li><code>envelope</code> to get the envelope first, if it needs to be re-addressed to 
 a different room or user</li>
 </ul>
 <h3>Unprompted Outgoing</h3><h4>Hubot</h4><pre><code class="language-js">const room = { name: &#39;general&#39; }
 const user = { name: &#39;bilbo&#39; }
-robot.messageRoom(room.name, &#39;hello #&#39; + room.name)
-robot.reply({ room, user }, &#39;hello you&#39;)</code></pre>
+robot.messageRoom(room.name, &#39;hello #&#39; + room.name)</code></pre>
 <h4>bBot</h4><pre><code class="language-js">const room = { name: &#39;general&#39; }
 const user = { name: &#39;bilbo&#39; }
-bot.dispatch(new bot.Envelope({ room }).compose(&#39;hello #&#39; + room.name))
-bot.dispatch(new bot.Envelope({ user }).compose(&#39;hello you&#39;).via(&#39;reply&#39;))</code></pre>
+bot.dispatch(new bot.Envelope({ room }).compose(&#39;hello #&#39; + room.name))</code></pre>
 <h3>Responding to Incoming</h3><h4>Hubot</h4><pre><code class="language-js">robot.hear(/say hello to (.*)/i, (res) =&gt; {
   res.send(&#39;Hello &#39; + res.match[1])
 })
 robot.hear(/can anyone hear me/i, (res) =&gt; {
 robot.adapter.react(res.envelope, &#39;:raising-hand:&#39;)
-})
-robot.hear(/welcome me to the (.*) room/i, (res) =&gt; {
-  res.envelope.room = res.match[1]
-  res.reply(&#39;Welcome&#39;)
 })</code></pre>
 <h4>bBot</h4><pre><code class="language-js">bot.global.text(/say hello to (.*)/i, (b) =&gt; {
-  b.respond(&#39;Hello &#39; + res.match[1]
+  b.respond(&#39;Hello &#39; + b.match[1]
 })
 bot.global.text(/can anyone hear me/i, (b) =&gt; {
   b.respondVia(&#39;react&#39;, &#39;:raising-hand:&#39;)
-})
-bot.global.text(/welcome me to the (.*) room/i, (b) =&gt; {
-  b.envelope.toRoomName(b.match[1])
-  b.respondVia(&#39;reply&#39;, &#39;Welcome&#39;)
 })</code></pre>
 <h3>Adapter Class</h3><h4>Hubot</h4><pre><code class="language-js">const { Adapter } = require(&#39;hubot&#39;)
 class Campfire extends Adapter {
