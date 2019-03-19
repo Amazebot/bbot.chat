@@ -172,14 +172,12 @@ inheriting the properties to address it back to the source. Using:
 #### Hubot
 ```js
 const room = { name: 'general' }
-const user = { name: 'bilbo' }
 robot.messageRoom(room.name, 'hello #' + room.name)
 ```
 
 #### bBot
 ```js
 const room = { name: 'general' }
-const user = { name: 'bilbo' }
 bot.dispatch(new bot.Envelope({ room }).compose('hello #' + room.name))
 ```
 
