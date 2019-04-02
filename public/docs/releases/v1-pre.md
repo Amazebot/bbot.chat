@@ -65,11 +65,17 @@ odd tidy semantic attributes. Naming conventions and module exports for "utils",
 "components" and their "controllers" is applied universally too. I'll explain
 more later.
 
+---
+
 *Adapters have moved (incomplete)*. Keeping adapters for external systems like
 Rocket.Chat or Mongo within the main bot module was a mistake. It required some
 hacky loading logic and bloated the dependency footprint for the core bot when
 used without them. Now everything is in the same repo but published as
 individual modules, with a consistent naming convention.
+
+Currently, there is no support in the pre-release version for any adapters other
+than Rocket.Chat. Before a full release, the Slack, Mongo, Rasa and Watson
+adapters will be updated.
 
 ---
 
