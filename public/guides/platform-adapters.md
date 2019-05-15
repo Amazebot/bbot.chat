@@ -1,27 +1,56 @@
 [amazebot-gh]: https://github.com/Amazebot/
 [adapters]: https://github.com/Amazebot/bbot/tree/master/src/lib/adapter-classes
 
-Adapters allow your bots to be integrated with a variety of external platforms
-without changing the conversation and data structures. They each provide a layer
-of an agnostic stack you can customise for the needs of your application.
+## Make a Connection
 
-bBot provides a universal model for messages, natural language understanding and
-state data models. Adapters translate the incoming and outgoing data for each
-platform's specific needs.
+Adapters allow your bot to integrate with external platforms interchangeably, so
+you can apply consistent application logic to a variety of audiences or tech
+stacks. This also makes migration much easier, preventing vendor lock-in.
 
-## Adapter Types
+bBot provides an agnostic schema for data models, like messages, NLU results.
+Adapters handle connection/login with the platform and parse the incoming and
+outgoing data. Current adapter types include:
 
-The layers of the adapter stack include:
 - **Message** adapter connects the chat platform, parsing messages and events.
 - **NLU** adapter processes messages for natural language understanding.
 - **Storage** adapter to save, query and persist operational data and states.
-- **Webhook** adapter (in development) manages custom external integration URLs.
-- **Analytics** adapter (in development) reports data into external dashboards.
 
-We bundle some adapters so you can get started without additional dependencies,
-also providing a pattern for adapter developers. The alpha release includes a
-Shell and Rocket.Chat message adapter, Mongo DB storage adapter. We're releasing
-additional adapters under [Amazebot][amazebot-gh].
+We have other adapter types on the roadmap, such as **Webhook** to manage custom
+integrations and **Analytics** to report data into external dashboards.
+
+## Supported Platforms
+
+Adapters are published as NPM packages, to be added as a dependency of your bot.
+The bBot mono-repo includes some [adapters for common platforms][adapters],
+providing a pattern for developers to extend and create their own.
+
+<a href="https://github.com/Amazebot/bbot/tree/master/packages/bbot-message-rocketchat">
+  <img class='m-2' width="100px" height="auto" src="/img/adapters/rocketchat.png" />
+</a>
+
+<a href="https://github.com/Amazebot/bbot/tree/master/packages/bbot-message-slack">
+  <img class='m-2' width="100px" height="auto" src="/img/adapters/slack.png" />
+</a>
+
+<a href="https://github.com/Amazebot/bbot/tree/master/packages/bbot-nlu-watson">
+  <img class='m-2' width="100px" height="auto" src="/img/adapters/watson.png" />
+</a>
+
+<a href="https://github.com/Amazebot/bbot/tree/master/packages/bbot-nlu-rasa">
+  <img class='m-2' width="100px" height="auto" src="/img/adapters/rasa.png" />
+</a>
+
+<a href="https://github.com/Amazebot/bbot/tree/master/packages/bbot-storage-mongo">
+  <img class='m-2' width="100px" height="auto" src="/img/adapters/mongo.png" />
+</a>
+
+## Using Adapters
+
+Adapters need to be installed as npm packages, then enabled by configuring the
+bot with the package name, e.g. `BOT_MESSAGE_ADAPTER=` or using command line
+options as `--message-adapter=`.
+
+> 🎓 [Learn more about configuring bots](/guides/configuration)
 
 ## Building Adapters
 
@@ -134,4 +163,4 @@ export const use = (bot: typeof bBot) => new AdvancedMessageAdapter(bot)
 
 ---
 
-<a href="/docs/nlu" class="btn btn-secondary">Learn how to use NLU ➮</a>
+<a href="/guides/nlu" class="btn btn-secondary">Learn how to use NLU ➮</a>

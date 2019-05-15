@@ -2,6 +2,11 @@
 [bbot]: '//bBot.chat'
 [issues]: 'https://github.com/amazebot/bbot.chat/issues'
 
+---
+> This document is out of date, it's been removed from the menu until it can be
+> updated with accurate references.
+---
+
 ## The Real MVP
 This project was spawned from a collection of extensions to GitHub's Hubot
 framework that outgrew their repo and begged for refactoring as a coherent
@@ -20,7 +25,7 @@ missed something important.
 `listen`, `hear` and `respond` methods have counterparts within bBot but they
 work slightly differently and we've attempted to find more semantic naming.
 
-The most important difference is that bBot is [built for branching](/docs/path).
+The most important difference is that bBot is [built for branching](/guides/matching-and-branching).
 So message matching happens on the type and content of the message, just as with
 Hubot, but also on the _scope_. We refer to all "listeners" as branches.
 

@@ -1,5 +1,5 @@
 - var path = (environment == "production") ? uri + '/' : '/'
-title #{ title }
+title #{ title } | #{public._data.pages[current.source] }
 meta(name="description" content=description)
 meta(name="author" content=author)
 meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
